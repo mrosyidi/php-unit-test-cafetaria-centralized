@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Cafetaria\\DatabaseTest::testConnectionReturnsPDOInstance":8},"times":{"Cafetaria\\DatabaseTest::testConnectionReturnsPDOInstance":0.022}}
+{"version":1,"defects":{"Cafetaria\\DatabaseTest::testConnectionReturnsPDOInstance":8},"times":{"Cafetaria\\DatabaseTest::testConnectionReturnsPDOInstance":0.065,"Cafetaria\\DatabaseTest::testConnectionIsWorking":0.357}}
