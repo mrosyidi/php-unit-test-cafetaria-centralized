@@ -1,0 +1,12 @@
+{
+    "name": "cafetaria/php-unit-test-cafetaria",
+    "description": "Cafetaria Apps",
+    "type": "project",
+    "authors": [
+        {
+            "name": "mrosyidi",
+            "email": "rosyidiyuekunchen@gmail.com"
+        }
+    ],
+    "require": {}
+}
