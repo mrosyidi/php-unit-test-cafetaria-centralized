@@ -1,0 +1,27 @@
+{
+    "name": "cafetariahelper/php-unit-test-cafetaria-helper",
+    "description": "Library Cafetaria Apps",
+    "type": "library",
+    "authors": [
+        {
+            "name": "mrosyidi",
+            "email": "rosyidiyuekunchen@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cafetaria\\Helper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Cafetaria\\Helper\\": "tests"
+      }
+    },
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+      "phpunit/phpunit": "12.0.0"
+    }
+}
