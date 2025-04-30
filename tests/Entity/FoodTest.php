@@ -47,5 +47,12 @@
             $this->expectException(\InvalidArgumentException::class);
             $food = new Food();
             $food->setName(" ");
-        }      
+        }
+        
+        public function testSetPriceWithValidValue()
+        {
+            $food = new Food();
+            $food->setPrice(10000);
+            $this->assertEquals(10000, $food->getPrice());
+        }
     }
