@@ -20,4 +20,11 @@
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
             new Food("   ", 12000);
         }
+
+        public function testNegativePriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+            new Food("Mie Ayam", -7000);
+        }
     }
