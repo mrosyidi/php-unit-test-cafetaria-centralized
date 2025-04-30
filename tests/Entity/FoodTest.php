@@ -13,4 +13,11 @@
             $this->assertEquals("Rawon", $food->getName());
             $this->assertEquals(12000, $food->getPrice());
         }
+
+        public function testEmptyNameThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Nama tidak boleh kosong.");
+            new Food("   ", 12000);
+        }
     }
