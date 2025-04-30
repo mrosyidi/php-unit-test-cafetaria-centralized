@@ -27,4 +27,11 @@
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Food("Mie Ayam", -7000);
         }
+
+        public function testZeroPriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+            new Food("Soto Ayam", 0);
+        }
     }
