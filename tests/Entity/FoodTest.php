@@ -34,4 +34,11 @@
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Food("Soto Ayam", 0);
         }
+
+        public function testSetNameWithValidValue()
+        {
+            $food = new Food();
+            $food->setName("Ayam Panggang");
+            $this->assertEquals("Ayam Panggang", $food->getName());
+        }
     }
