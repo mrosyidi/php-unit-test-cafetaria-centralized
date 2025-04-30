@@ -41,4 +41,11 @@
             $food->setName("Ayam Panggang");
             $this->assertEquals("Ayam Panggang", $food->getName());
         }
+
+        public function testSetNameWithEmptyStringThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $food = new Food();
+            $food->setName(" ");
+        }      
     }
