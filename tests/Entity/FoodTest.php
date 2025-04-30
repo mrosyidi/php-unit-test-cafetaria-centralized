@@ -55,4 +55,11 @@
             $food->setPrice(10000);
             $this->assertEquals(10000, $food->getPrice());
         }
+
+        public function testSetPriceWithNegativeThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $food = new Food();
+            $food->setPrice(-1000);
+        }
     }
