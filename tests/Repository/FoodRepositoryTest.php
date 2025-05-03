@@ -74,4 +74,20 @@
 
             $this->foodRepository->findAll();
         }
+
+        public function testFindAllWithNegativePrice()
+        {
+            $statementMock = $this->createMock(\PDOStatement::class);
+            $statementMock->method('execute')->willReturn(true);
+            $statementMock->method('fetchAll')->willReturn([
+                ['name' => 'Nasi Goreng', 'price' => -12000]
+            ]);
+            
+            $this->pdoMock->method('prepare')->willReturn($statementMock);
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+
+            $this->foodRepository->findAll();
+        }
     }
