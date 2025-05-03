@@ -22,8 +22,8 @@
             $statementMock = $this->createMock(\PDOStatement::class);
             $statementMock->method('execute')->willReturn(true);
             $statementMock->method('fetchAll')->willReturn([
-                ['name' => 'Nasi Goreng', 'price' => 15000],
-                ['name' => 'Mie Goreng', 'price' => 12000],
+                ['name' => 'Nasi Goreng', 'price' => 12000],
+                ['name' => 'Mie Goreng', 'price' => 7000],
             ]);
 
             $this->pdoMock->method('prepare')->willReturn($statementMock);
@@ -32,7 +32,7 @@
             $this->assertCount(2, $foods);
             $this->assertInstanceOf(Food::class, $foods[0]);
             $this->assertEquals('Nasi Goreng', $foods[0]->getName());
-            $this->assertEquals(15000, $foods[0]->getPrice());
+            $this->assertEquals(12000, $foods[0]->getPrice());
         }
 
         public function testFindAllWithNoData()
@@ -57,5 +57,21 @@
 
             $this->assertCount(0, $foods);
 
+        }
+
+        public function testFindAllWithEmptyName()
+        {
+            $statementMock = $this->createMock(\PDOStatement::class);
+            $statementMock->method('execute')->willReturn(true);
+            $statementMock->method('fetchAll')->willReturn([
+                ['name' => '', 'price' => 12000]
+            ]);
+            
+            $this->pdoMock->method('prepare')->willReturn($statementMock);
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Nama tidak boleh kosong.");
+
+            $this->foodRepository->findAll();
         }
     }
