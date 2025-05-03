@@ -35,4 +35,15 @@
             $this->assertEquals(15000, $foods[0]->getPrice());
         }
 
+        public function testFindAllWithNoData()
+        {
+            $statementMock = $this->createMock(\PDOStatement::class);
+            $statementMock->method('execute')->willReturn(true);
+            $statementMock->method('fetchAll')->willReturn([]);
+
+            $this->pdoMock->method('prepare')->willReturn($statementMock);
+            $foods = $this->foodRepository->findAll();
+
+            $this->assertCount(0, $foods);
+        }
     }
