@@ -46,4 +46,16 @@
 
             $this->assertCount(0, $foods);
         }
+
+        public function testFindAllWithQueryFailure()
+        {
+            $statementMock = $this->createMock(\PDOStatement::class);
+            $statementMock->method('execute')->willReturn(false);
+
+            $this->pdoMock->method('prepare')->willReturn($statementMock);
+            $foods = $this->foodRepository->findAll();
+
+            $this->assertCount(0, $foods);
+
+        }
     }
