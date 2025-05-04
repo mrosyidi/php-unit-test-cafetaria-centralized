@@ -93,6 +93,19 @@
             $this->assertNull($foods[0]->getPrice());
         }
 
+        public function testFindAllWithZeroPrice()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => 'Nasi Goreng', 'price' => 0]
+            ]);
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+
+            $this->foodRepository->findAll();
+        }
+
         public function testFindAllWithNegativePrice()
         {
             $this->statement->method('execute')->willReturn(true);
