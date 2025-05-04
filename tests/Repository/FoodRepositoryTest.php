@@ -8,25 +8,26 @@
 
     class FoodRepositoryTest extends TestCase
     {
-        private $pdoMock;
+        private $pdo;
+        private $statement;
         private $foodRepository;
 
         protected function setUp(): void
         {
-            $this->pdoMock = $this->createMock(\PDO::class);
-            $this->foodRepository = new FoodRepositoryImpl($this->pdoMock);
+            $this->pdo = $this->createMock(\PDO::class);
+            $this->statement = $this->createMock(\PDOStatement::class);
+            $this->pdo->method('prepare')->willReturn($this->statement);
+            $this->foodRepository = new FoodRepositoryImpl($this->pdo);
         }
 
         public function testFindAllWithData()
         {
-            $statementMock = $this->createMock(\PDOStatement::class);
-            $statementMock->method('execute')->willReturn(true);
-            $statementMock->method('fetchAll')->willReturn([
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
                 ['name' => 'Nasi Goreng', 'price' => 12000],
                 ['name' => 'Mie Goreng', 'price' => 7000],
             ]);
 
-            $this->pdoMock->method('prepare')->willReturn($statementMock);
             $foods = $this->foodRepository->findAll();
 
             $this->assertCount(2, $foods);
@@ -37,11 +38,9 @@
 
         public function testFindAllWithNoData()
         {
-            $statementMock = $this->createMock(\PDOStatement::class);
-            $statementMock->method('execute')->willReturn(true);
-            $statementMock->method('fetchAll')->willReturn([]);
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([]);
 
-            $this->pdoMock->method('prepare')->willReturn($statementMock);
             $foods = $this->foodRepository->findAll();
 
             $this->assertCount(0, $foods);
@@ -49,25 +48,32 @@
 
         public function testFindAllWithQueryFailure()
         {
-            $statementMock = $this->createMock(\PDOStatement::class);
-            $statementMock->method('execute')->willReturn(false);
+            $this->statement->method('execute')->willReturn(false);
 
-            $this->pdoMock->method('prepare')->willReturn($statementMock);
             $foods = $this->foodRepository->findAll();
 
             $this->assertCount(0, $foods);
 
         }
 
-        public function testFindAllWithEmptyName()
+        public function testFindAllWithNullName()
         {
-            $statementMock = $this->createMock(\PDOStatement::class);
-            $statementMock->method('execute')->willReturn(true);
-            $statementMock->method('fetchAll')->willReturn([
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => null, 'price' => 12000]
+            ]);
+
+            $foods = $this->foodRepository->findAll();
+
+            $this->assertNull($foods[0]->getName());
+        }
+
+        public function testFindAllWithEmptyString()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
                 ['name' => '', 'price' => 12000]
             ]);
-            
-            $this->pdoMock->method('prepare')->willReturn($statementMock);
 
             $this->expectException(\InvalidArgumentException::class);
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
@@ -77,13 +83,10 @@
 
         public function testFindAllWithNegativePrice()
         {
-            $statementMock = $this->createMock(\PDOStatement::class);
-            $statementMock->method('execute')->willReturn(true);
-            $statementMock->method('fetchAll')->willReturn([
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
                 ['name' => 'Nasi Goreng', 'price' => -12000]
             ]);
-            
-            $this->pdoMock->method('prepare')->willReturn($statementMock);
 
             $this->expectException(\InvalidArgumentException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
