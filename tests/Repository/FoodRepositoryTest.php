@@ -81,6 +81,18 @@
             $this->foodRepository->findAll();
         }
 
+        public function testFindAllWithNullPrice()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => 'Nasi Goreng', 'price' => null]
+            ]);
+
+            $foods = $this->foodRepository->findAll();
+            
+            $this->assertNull($foods[0]->getPrice());
+        }
+
         public function testFindAllWithNegativePrice()
         {
             $this->statement->method('execute')->willReturn(true);
