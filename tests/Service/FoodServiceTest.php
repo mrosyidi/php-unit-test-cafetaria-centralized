@@ -39,4 +39,13 @@
             $this->assertEquals('Ayam Goreng', $foods[0]->getName());
             $this->assertEquals(12000, $foods[0]->getPrice());
         }
+
+        public function testGetAllFoodWhenNoDataExist()
+        {
+            $this->foodRepository->method('findAll')->willReturn([]);
+
+            $foods = $this->foodService->getAllFood();
+
+            $this->assertCount(0, $foods);
+        }
     }
