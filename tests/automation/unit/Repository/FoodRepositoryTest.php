@@ -139,6 +139,21 @@
             ->method('prepare')
             ->will($this->throwException(new \PDOException("Database error")));
 
-            $this->foodRepository->save(new Food("Rawon", 12000));;
+            $this->foodRepository->save(new Food("Rawon", 12000));
+        }
+
+        public function testSaveExecuteFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("INSERT INTO foods(name,price) VALUES(?,?)")
+            ->willReturn($this->statement);
+
+            $this->statement->expects($this->once())
+            ->method('execute')
+            ->will($this->throwException(new \PDOException("Execution failed")));
+
+            $this->foodRepository->save(new Food("Rawon", 12000));
         }
     }
