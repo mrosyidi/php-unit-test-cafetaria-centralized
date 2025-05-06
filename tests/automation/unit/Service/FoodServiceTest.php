@@ -62,4 +62,10 @@
             $this->expectException(\InvalidArgumentException::class);
             $this->foodService->addFood("", 12000);
         }
+
+        public function testAddFoodWithZeroPriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->foodService->addFood("Rawon", 0);
+        }
     }
