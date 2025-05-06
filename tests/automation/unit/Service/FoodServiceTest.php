@@ -48,4 +48,12 @@
 
             $this->assertCount(0, $foods);
         }
+
+        public function testAddFoodSuccess()
+        {
+            $this->foodRepository->expects($this->once())
+            ->method('save')->with(new Food("Ayam Panggang", 12000));
+
+            $this->foodService->addFood("Ayam Panggang", 12000);
+        }
     }
