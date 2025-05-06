@@ -118,4 +118,16 @@
 
             $this->foodRepository->findAll();
         }
+
+        public function testSaveSuccess()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(["Soto Ayam", 10000]);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("INSERT INTO foods(name,price) VALUES(?,?)")
+            ->willReturn($this->statement);
+
+            $this->foodRepository->save(new Food("Soto Ayam", 10000));
+        }
     }
