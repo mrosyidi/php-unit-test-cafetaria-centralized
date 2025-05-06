@@ -72,6 +72,17 @@
         public function testAddFoodWithNegativePriceThrowsException()
         {
             $this->expectException(\InvalidArgumentException::class);
-            $this->foodService->addFood("Rawon", -12000);
+            $this->foodService->addFood("Soto Daging", -12000);
+        }
+
+        public function testAddFoodSaveFailsThrowsException()
+        {
+            $this->foodRepository->expects($this->once())
+            ->method('save')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->expectException(\PDOException::class);
+
+            $this->foodService->addFood("Pastel", 5000);
         }
     }
