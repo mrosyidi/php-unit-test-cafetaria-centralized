@@ -22,7 +22,8 @@
 
         public function addFood(string $name, int $price): void
         {
-
+            $food = new Food($name, $price);
+            $this->foodRepository->save($food);
         }
 
         public function getFood(): array
