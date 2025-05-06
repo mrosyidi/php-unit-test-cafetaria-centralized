@@ -130,4 +130,15 @@
 
             $this->foodRepository->save(new Food("Soto Ayam", 10000));
         }
+
+        public function testSavePrepareFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->foodRepository->save(new Food("Rawon", 12000));;
+        }
     }
