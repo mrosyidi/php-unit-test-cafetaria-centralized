@@ -56,4 +56,10 @@
 
             $this->foodService->addFood("Ayam Panggang", 12000);
         }
+
+        public function testAddFoodWithEmptyNameThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->foodService->addFood("", 12000);
+        }
     }
