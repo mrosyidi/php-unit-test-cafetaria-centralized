@@ -26,4 +26,15 @@
 
             $this->assertTrue(FoodValidator::isDuplicate($foods, 'nasi goreng'));
         }
+
+        public function testIsDuplicateReturnsFalseWhenNoDuplicate()
+        {
+            $food = $this->createMock(Food::class);
+            
+            $food->method('getName')->willReturn('Nasi Goreng');
+
+            $foods[] = $food;
+
+            $this->assertFalse(FoodValidator::isDuplicate($foods, 'Soto Ayam'));
+        }
     }
