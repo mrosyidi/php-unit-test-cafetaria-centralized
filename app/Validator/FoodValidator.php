@@ -15,7 +15,7 @@
             {
                 if (!method_exists($food, 'getName')) 
                 {
-                    throw new \InvalidArgumentException("Objek makanan tidak memiliki metode getName.");
+                    throw new \InvalidArgumentException("Objek tidak memiliki metode getName.");
                 }
         
                 if (strtolower(trim($food->getName())) === strtolower(trim($name))) 

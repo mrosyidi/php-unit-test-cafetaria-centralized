@@ -37,4 +37,14 @@
 
             $this->assertFalse(FoodValidator::isDuplicate($foods, 'Soto Ayam'));
         }
+
+        public function testIsDuplicateThrowsExceptionWhenNoGetName()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Objek tidak memiliki metode getName.");
+
+            $foods[] = (object)['name' => 'Mie Ayam'];
+            
+            FoodValidator::isDuplicate($foods, "Mie Ayam");
+        }
     }
