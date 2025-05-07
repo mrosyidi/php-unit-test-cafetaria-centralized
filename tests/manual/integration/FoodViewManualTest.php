@@ -28,4 +28,4 @@
         $foodView->addFood();
     }
 
-    testViewAddFood();
+    testViewShowFood();
