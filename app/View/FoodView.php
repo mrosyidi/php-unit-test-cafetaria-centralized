@@ -3,7 +3,9 @@
     namespace Cafetaria\View;
 
     use Cafetaria\Service\FoodService;
+    use Cafetaria\Helper\CheckHelper;
     use Cafetaria\Helper\InputHelper;
+    use Cafetaria\Validator\FoodValidator;
 
     class FoodView 
     {
@@ -56,5 +58,58 @@
                     echo "Pilihan tidak dimengerti" . PHP_EOL;
                 }
             }
+        }
+
+        public function addFood(): void 
+        {
+            $foods = $this->foodService->getAllFood();
+
+            echo "MENAMBAH MAKANAN" . PHP_EOL;
+
+            $name = InputHelper::input("Nama makanan (x untuk batal)");
+
+            if($name == "x")
+            {
+                echo "Batal menambah makanan." . PHP_EOL;
+                return;
+            }
+            
+            if(!FoodValidator::isValidName($name))
+            {
+                echo "Gagal menambah makanan, nama tidak boleh kosong." . PHP_EOL;
+                return;
+            }
+
+            if(FoodValidator::isDuplicate($foods, $name))
+            {
+                echo "Gagal menambah makanan, nama makanan sudah ada." . PHP_EOL;
+                return;
+            }
+
+            $price = InputHelper::input("Harga makanan (x untuk batal)");
+
+            if($price == "x")
+            {
+                echo "Batal menambah makanan." . PHP_EOL;
+                return;
+            }
+
+            if(!is_numeric($price))
+            {
+                echo "Gagal menambah makanan, harga makanan harus bilangan." . PHP_EOL;
+                return;
+            }
+
+            $price = (float)$price;
+
+            if($price <= 0)
+            {
+                echo "Gagal menambah makanan, harga harus bilangan positif." . PHP_EOL;
+                return;
+            }
+
+            $this->foodService->addFood($name, $price);
+
+            echo "Sukses menambah makanan" . PHP_EOL;
         }
     }
