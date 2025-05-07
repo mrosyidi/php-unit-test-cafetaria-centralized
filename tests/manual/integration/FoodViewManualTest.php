@@ -18,4 +18,14 @@
         $foodView->showFood();
     }
 
-    testViewShowFood();
+    function testViewAddFood()
+    {
+        $connection = Database::getConnection();
+
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodView = new FoodView($foodService);
+        $foodView->addFood();
+    }
+
+    testViewAddFood();
