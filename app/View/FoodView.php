@@ -46,7 +46,7 @@
 
                 if($pilihan == "1")
                 {
-
+                    $this->addFood();
                 }else if($pilihan == "2")
                 {
 
