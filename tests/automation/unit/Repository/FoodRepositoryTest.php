@@ -212,4 +212,21 @@
 
             $this->foodRepository->remove("Mie Goreng");
         }
+
+        public function testRemoveReturnsTrueWhenMultipleRowDeleted()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(['Ayam Panggang']);
+
+            $this->statement->expects($this->once())
+            ->method('rowCount')->willReturn(2);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM foods WHERE name=?")
+            ->willReturn($this->statement);
+
+            $result = $this->foodRepository->remove('Ayam Panggang');
+
+            $this->assertTrue($result);
+        }
     }
