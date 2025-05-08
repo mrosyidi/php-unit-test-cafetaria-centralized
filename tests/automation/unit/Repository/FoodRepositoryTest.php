@@ -156,4 +156,21 @@
 
             $this->foodRepository->save(new Food("Rawon", 12000));
         }
+
+        public function testRemoveReturnsTrueWhenRowDeleted()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(['Rawon']);
+
+            $this->statement->expects($this->once())
+            ->method('rowCount')->willReturn(1);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM foods WHERE name=?")
+            ->willReturn($this->statement);
+
+            $result = $this->foodRepository->remove('Rawon');
+
+            $this->assertTrue($result);
+        }
     }
