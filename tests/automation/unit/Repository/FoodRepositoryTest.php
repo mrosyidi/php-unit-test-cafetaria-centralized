@@ -190,4 +190,14 @@
 
             $this->assertFalse($result);
         }
+
+        public function testRemoveThrowsExceptionOnPrepareFailure()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->method('prepare')
+            ->willThrowException(new \PDOException("Database error"));
+
+            $this->foodRepository->remove('Gado-Gado');
+        }
     }
