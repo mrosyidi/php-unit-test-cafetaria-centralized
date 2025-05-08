@@ -96,4 +96,15 @@
 
             $this->assertTrue($result);
         }
+
+        public function testRemoveFoodReturnsFalse()
+        {
+            $this->foodRepository->expects($this->once())
+            ->method('remove')->with('Tahu Telor')
+            ->willReturn(false);
+
+            $result = $this->foodService->removeFood('Tahu Telor');
+
+            $this->assertFalse($result);
+        }
     }
