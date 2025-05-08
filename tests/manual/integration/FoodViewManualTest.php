@@ -28,4 +28,14 @@
         $foodView->addFood();
     }
 
-    testViewShowFood();
+    function testViewRemoveFood()
+    {
+        $connection = Database::getConnection();
+
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $foodService = new FoodServiceImpl($foodRepository);
+        $foodView = new FoodView($foodService);
+        $foodView->removeFood();
+    }
+
+    testViewRemoveFood();
