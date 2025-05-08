@@ -107,4 +107,14 @@
 
             $this->assertFalse($result);
         }
+
+        public function testRemoveFoodThrowsException()
+        {
+            $this->foodRepository->expects($this->once())
+            ->method('remove')
+            ->willThrowException(new \PDOException("DB error"));
+
+            $this->expectException(\PDOException::class);
+            $this->foodService->removeFood('Lontong Sayur');
+        }
     }
