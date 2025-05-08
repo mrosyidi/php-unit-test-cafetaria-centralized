@@ -38,4 +38,4 @@
         $foodView->removeFood();
     }
 
-    testViewRemoveFood();
+    testViewShowFood();
