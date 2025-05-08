@@ -26,13 +26,8 @@
             $this->foodRepository->save($food);
         }
 
-        public function getFood(): array
-        {
-            
-        }
-
         public function removeFood(string $name): bool
         {
-            
+            return $this->foodRepository->remove($name);
         }
     }
