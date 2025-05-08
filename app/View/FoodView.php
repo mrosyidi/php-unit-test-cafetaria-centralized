@@ -112,4 +112,43 @@
 
             echo "Sukses menambah makanan" . PHP_EOL;
         }
+
+        public function removeFood(): void 
+        {
+            echo "MENGHAPUS MAKANAN" . PHP_EOL;
+
+            $number = InputHelper::input("Nomor makanan (x untuk batal)");
+
+            if($number == "x")
+            {
+                echo "Batal menghapus makanan." . PHP_EOL;
+                return;
+            }
+            
+            if(!is_numeric($number))
+            {
+                echo "Gagal menghapus makanan, nomor harus bilangan." . PHP_EOL;
+                return;
+            }
+
+            $number = (int)$number;
+            $foods = $this->foodService->getAllFood();
+            
+            if($number <= 0 || $number > count($foods))
+            {
+                echo "Gagal menghapus makanan nomor $number." . PHP_EOL;
+                return;
+            }
+
+            $name = $foods[$number-1]->getName();
+            $success = $this->foodService->removeFood($name);
+
+            if($success)
+            {
+                echo "Sukses menghapus makanan nomor $number." . PHP_EOL;
+            }else
+            {
+                echo "Gagal menghapus makanan nomor $number." . PHP_EOL;
+            }
+        }
     }
