@@ -49,7 +49,7 @@
                     $this->addFood();
                 }else if($pilihan == "2")
                 {
-
+                    $this->removeFood();
                 }else if($pilihan == "x")
                 {
                     break;
