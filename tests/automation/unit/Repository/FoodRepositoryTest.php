@@ -200,4 +200,16 @@
 
             $this->foodRepository->remove('Gado-Gado');
         }
+
+        public function testRemoveThrowsExceptionOnExecuteFailure()
+        {
+            $this->statement->method('execute')
+            ->willThrowException(new \PDOException("Execution failed"));
+
+            $this->pdo->method('prepare')->willReturn($this->statement);
+
+            $this->expectException(\PDOException::class);
+
+            $this->foodRepository->remove("Mie Goreng");
+        }
     }
