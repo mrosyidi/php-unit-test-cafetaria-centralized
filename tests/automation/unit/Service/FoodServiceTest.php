@@ -85,4 +85,15 @@
 
             $this->foodService->addFood("Pastel", 5000);
         }
+
+        public function testRemoveFoodReturnsTrue()
+        {
+            $this->foodRepository->expects($this->once())
+            ->method('remove')->with('Gado-Gado')
+            ->willReturn(true);
+
+            $result = $this->foodService->removeFood('Gado-Gado');
+
+            $this->assertTrue($result);
+        }
     }
