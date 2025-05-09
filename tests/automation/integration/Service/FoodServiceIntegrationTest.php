@@ -51,4 +51,12 @@
             $this->assertEquals("Soto Daging", $foods[0]->getName());
             $this->assertEquals(12000, $foods[0]->getPrice());
         }
+
+        public function testAddFoodWithEmptyNameThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Nama tidak boleh kosong.");
+
+            $this->foodService->addFood("", 10000); 
+        }
     }
