@@ -40,4 +40,15 @@
 
             $this->assertEmpty($foods);
         }
+
+        public function testAddFoodSuccess()
+        {
+            $this->foodService->addFood("Soto Daging", 12000);
+
+            $foods = $this->foodService->getAllFood();
+
+            $this->assertCount(1, $foods);
+            $this->assertEquals("Soto Daging", $foods[0]->getName());
+            $this->assertEquals(12000, $foods[0]->getPrice());
+        }
     }
