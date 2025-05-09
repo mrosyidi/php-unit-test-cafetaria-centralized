@@ -92,4 +92,11 @@
 
             $this->assertCount(0, $foods);
         }
+
+        public function testRemoveFoodReturnsFalseWhenFoodNotExist()
+        {
+            $result = $this->foodService->removeFood("Soto Daging");
+            
+            $this->assertFalse($result);
+        }
     }
