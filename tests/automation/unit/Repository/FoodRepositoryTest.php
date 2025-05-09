@@ -229,4 +229,13 @@
 
             $this->assertTrue($result);
         }
+
+        public function testRemoveAll()
+        {
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM foods")
+            ->willReturn($this->statement);
+
+            $this->foodRepository->removeAll();
+        }
     }
