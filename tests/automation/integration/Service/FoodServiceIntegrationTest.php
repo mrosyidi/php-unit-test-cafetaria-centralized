@@ -67,4 +67,12 @@
 
             $this->foodService->addFood("Gado-Gado", 0); 
         }
+
+        public function testAddFoodWithNegativePriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+
+            $this->foodService->addFood("Gado-Gado", -12000); 
+        }
     }
