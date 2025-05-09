@@ -75,4 +75,21 @@
 
             $this->foodService->addFood("Gado-Gado", -12000); 
         }
+
+        public function testRemoveFoodSuccess()
+        {
+            $this->foodService->addFood("Pastel", 5000);
+            
+            $foods = $this->foodService->getAllFood();
+            
+            $this->assertCount(1, $foods);
+
+            $result = $this->foodService->removeFood("Pastel");
+
+            $this->assertTrue($result);
+
+            $foods = $this->foodService->getAllFood();
+
+            $this->assertCount(0, $foods);
+        }
     }
