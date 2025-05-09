@@ -21,16 +21,23 @@
             $this->foodRepository->removeAll();
         }
 
-        public function testGetAllFoodData()
+        public function testGetAllFoodWithData()
         {
             $food = new Food("Mie Ayam", 7000);
             
             $this->foodRepository->save($food);
 
-            $result = $this->foodService->getAllFood();
+            $foods = $this->foodService->getAllFood();
 
-            $this->assertCount(1, $result);
-            $this->assertEquals($food->getName(), $result[0]->getName());
-            $this->assertEquals($food->getPrice(), $result[0]->getPrice());
+            $this->assertCount(1, $foods);
+            $this->assertEquals($food->getName(), $foods[0]->getName());
+            $this->assertEquals($food->getPrice(), $foods[0]->getPrice());
+        }
+
+        public function testGetAllFoodWithNoData()
+        {
+            $foods = $this->foodService->getAllFood();
+
+            $this->assertEmpty($foods);
         }
     }
