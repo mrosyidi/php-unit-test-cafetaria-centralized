@@ -48,4 +48,11 @@
 
             return $statement->rowCount() > 0;
         }
+
+        public function removeAll(): void 
+        {
+            $sql = "DELETE FROM foods";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
+        }
     }
