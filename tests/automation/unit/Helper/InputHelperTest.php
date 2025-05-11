@@ -41,4 +41,14 @@
             $this->expectExceptionMessage("Stream tidak valid.");
             InputHelper::input("Nama");
         }
+
+        public function testInputWithFailedFgetsShouldThrowException()
+        {
+            $stream = fopen('php://memory', 'r');
+            InputHelper::$inputStream = $stream;
+
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage("Gagal membaca masukan.");
+            InputHelper::input("Nama");
+        }
     }
