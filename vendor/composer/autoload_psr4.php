@@ -8,6 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'Cafetaria\\Helper\\' => array($vendorDir . '/cafetariahelper/php-unit-test-cafetaria-helper/src'),
     'Cafetaria\\' => array($baseDir . '/app', $baseDir . '/tests'),
 );

@@ -22,7 +22,6 @@ class ComposerStaticInit954c88e7b046dbed8352b841d8565ce4
         ),
         'C' => 
         array (
-            'Cafetaria\\Helper\\' => 17,
             'Cafetaria\\' => 10,
         ),
     );
@@ -35,10 +34,6 @@ class ComposerStaticInit954c88e7b046dbed8352b841d8565ce4
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
-        ),
-        'Cafetaria\\Helper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/cafetariahelper/php-unit-test-cafetaria-helper/src',
         ),
         'Cafetaria\\' => 
         array (

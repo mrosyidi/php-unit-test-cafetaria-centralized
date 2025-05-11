@@ -22,4 +22,11 @@
             $this->assertEquals($input, $result);
             fclose($stream);
         }
+
+        public function testInputWithEmptyInfoShouldThrowException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Info tidak boleh kosong.");
+            InputHelper::input("");
+        }
     }
