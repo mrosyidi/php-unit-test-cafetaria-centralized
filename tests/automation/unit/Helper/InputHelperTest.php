@@ -29,4 +29,16 @@
             $this->expectExceptionMessage("Info tidak boleh kosong.");
             InputHelper::input("");
         }
+
+        public function testInputWithInvalidStreamShouldThrowException()
+        {
+            $invalidStream = tmpfile();
+            fclose($invalidStream);
+
+            InputHelper::$inputStream = $invalidStream;
+
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage("Stream tidak valid.");
+            InputHelper::input("Nama");
+        }
     }
