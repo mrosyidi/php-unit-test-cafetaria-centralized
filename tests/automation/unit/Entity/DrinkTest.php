@@ -13,4 +13,11 @@
             $this->assertEquals("Es Campur", $drink->getName());
             $this->assertEquals(12000, $drink->getPrice());
         }
+
+        public function testConstructWithNullValues()
+        {
+            $drink = new Drink();
+            $this->assertNull($drink->getName());
+            $this->assertNull($drink->getPrice());
+        }
     }
