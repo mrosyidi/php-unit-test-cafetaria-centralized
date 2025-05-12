@@ -27,4 +27,11 @@
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
             new Drink("   ", 12000);
         }
+
+        public function testConstructorWithZeroPriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+            new Drink("Es Oyen", 0);
+        }
     }
