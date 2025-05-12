@@ -76,4 +76,11 @@
             $drink->setPrice(null);
             $this->assertNull($drink->getPrice());
         }
+
+        public function testSetPriceWithZeroThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $drink = new Drink("Jus Semangka", 7000);
+            $drink->setPrice(0);
+        }
     }
