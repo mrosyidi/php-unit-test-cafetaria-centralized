@@ -62,4 +62,11 @@
             $drink = new Drink("Jus Jambu", 7000);
             $drink->setName(" ");
         }
+
+        public function testSetPriceWithValidValue()
+        {
+            $drink = new Drink("Es Kelapa Muda", 6000);
+            $drink->setPrice(7000);
+            $this->assertEquals(7000, $drink->getPrice());
+        }
     }
