@@ -41,4 +41,11 @@
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Drink("Mie Ayam", -7000);
         }
+
+        public function testSetNameWithValidValue()
+        {
+            $drink = new Drink("Jus Melon");
+            $drink->setName("Es Campur");
+            $this->assertEquals("Es Campur", $drink->getName());
+        }
     }
