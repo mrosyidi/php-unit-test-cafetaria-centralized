@@ -227,4 +227,19 @@
             $this->assertStringContainsString("Sukses menambah makanan.", $output);
             $this->assertStringContainsString("1. Mie Ayam  Rp.99999999999", $output);
         }
+
+        public function testAddFoodSucces()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "Mie Ayam",
+                "7000",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah makanan.", $output);
+            $this->assertStringContainsString("1. Mie Ayam  Rp.7000", $output);
+        }
     }
