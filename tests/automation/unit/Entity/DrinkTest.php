@@ -34,4 +34,11 @@
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Drink("Es Oyen", 0);
         }
+
+        public function testConstructorWithNegativePriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+            new Drink("Mie Ayam", -7000);
+        }
     }
