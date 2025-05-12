@@ -212,4 +212,19 @@
 
             $this->assertStringContainsString("Gagal menambah makanan, harga makanan harus bilangan positif.", $output);
         }
+
+        public function testAddFoodWithLargePrice()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "Mie Ayam",
+                "99999999999",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah makanan.", $output);
+            $this->assertStringContainsString("1. Mie Ayam  Rp.99999999999", $output);
+        }
     }
