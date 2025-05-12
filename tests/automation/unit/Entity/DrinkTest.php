@@ -83,4 +83,11 @@
             $drink = new Drink("Jus Semangka", 7000);
             $drink->setPrice(0);
         }
+
+        public function testSetPriceWithNegativeThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $drink = new Drink("Es Campur", 12000);
+            $drink->setPrice(-10000);
+        }
     }
