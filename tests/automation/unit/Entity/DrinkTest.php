@@ -55,4 +55,11 @@
             $drink->setName(null);
             $this->assertNull($drink->getName());
         }
+
+        public function testSetNameWithEmptyStringThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $drink = new Drink("Jus Jambu", 7000);
+            $drink->setName(" ");
+        }
     }
