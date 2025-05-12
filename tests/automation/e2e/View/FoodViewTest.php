@@ -101,4 +101,17 @@
 
             $this->assertStringContainsString("Batal menambah makanan.", $output);
         }
+
+        public function testAddFoodWithEmptyNameShouldFail()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah makanan, nama tidak boleh kosong.", $output);
+        }
     }
