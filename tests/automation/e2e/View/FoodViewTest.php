@@ -281,4 +281,17 @@
 
             $this->assertStringContainsString("Gagal menghapus makanan nomor -1.", $output);
         }
+
+        public function testRemoveFoodWhenNoFoodExistShouldFail()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "2",
+                "5",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menghapus makanan nomor 5.", $output);
+        }
     }
