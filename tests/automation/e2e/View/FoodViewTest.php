@@ -88,4 +88,17 @@
             $this->assertStringContainsString("Pilihan tidak dimengerti", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
+
+        public function testAddFoodWhenNameIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "x",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Batal menambah makanan.", $output);
+        }
     }
