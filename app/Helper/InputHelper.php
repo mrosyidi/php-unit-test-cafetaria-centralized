@@ -4,7 +4,7 @@
 
     class InputHelper
     {
-        public static $inputStream = STDIN;
+        public static mixed $inputStream = STDIN;
 
         public static function input(string $info): string
         {

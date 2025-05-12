@@ -100,17 +100,23 @@
                 return;
             }
 
-            $price = (float)$price;
+            if (filter_var($price, FILTER_VALIDATE_INT) === false) 
+            {
+                echo "Gagal menambah makanan, harga makanan harus bilangan bulat." . PHP_EOL;
+                return;
+            }
+            
+            $price = (int)$price;  
 
             if($price <= 0)
             {
-                echo "Gagal menambah makanan, harga harus bilangan positif." . PHP_EOL;
+                echo "Gagal menambah makanan, harga makanan harus bilangan positif." . PHP_EOL;
                 return;
             }
 
             $this->foodService->addFood($name, $price);
 
-            echo "Sukses menambah makanan" . PHP_EOL;
+            echo "Sukses menambah makanan." . PHP_EOL;
         }
 
         public function removeFood(): void 

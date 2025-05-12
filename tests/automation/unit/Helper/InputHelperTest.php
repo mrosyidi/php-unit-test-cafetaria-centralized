@@ -47,8 +47,15 @@
             $stream = fopen('php://memory', 'r');
             InputHelper::$inputStream = $stream;
 
-            $this->expectException(\RuntimeException::class);
-            $this->expectExceptionMessage("Gagal membaca masukan.");
-            InputHelper::input("Nama");
+            ob_start();
+            try 
+            {
+                $this->expectException(\RuntimeException::class);
+                $this->expectExceptionMessage("Gagal membaca masukan.");
+                InputHelper::input("Nama");
+            }finally 
+            {
+                ob_end_clean();
+            }
         }
     }
