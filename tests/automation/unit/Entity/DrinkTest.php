@@ -48,4 +48,11 @@
             $drink->setName("Es Campur");
             $this->assertEquals("Es Campur", $drink->getName());
         }
+
+        public function testSetNameWithNullValue()
+        {
+            $drink = new Drink("Jus Wortel", 6000);
+            $drink->setName(null);
+            $this->assertNull($drink->getName());
+        }
     }
