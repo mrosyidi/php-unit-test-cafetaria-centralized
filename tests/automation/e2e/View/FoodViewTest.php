@@ -156,4 +156,18 @@
 
             $this->assertStringContainsString("Gagal menambah makanan, harga makanan harus bilangan.", $output);
         }
+
+        public function testAddFoodWithInvalidPriceShouldFail()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "Mie Ayam",
+                "10000abc",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah makanan, harga makanan harus bilangan.", $output);
+        }
     }
