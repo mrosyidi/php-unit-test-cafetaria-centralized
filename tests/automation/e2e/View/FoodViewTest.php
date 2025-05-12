@@ -114,4 +114,19 @@
 
             $this->assertStringContainsString("Gagal menambah makanan, nama tidak boleh kosong.", $output);
         }
+
+        public function testAddFoodWithDuplicateNameShouldFail()
+        {
+            $this->foodService->addFood("Sate Ayam", 12000);
+
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "Sate Ayam",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah makanan, nama makanan sudah ada.", $output);
+        }
     }
