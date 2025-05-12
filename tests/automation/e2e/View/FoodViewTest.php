@@ -75,4 +75,17 @@
 
             $this->assertStringContainsString("1. Rawon  Rp.12000", $output);
         }
+
+        public function testShowFoodWithInvalidMenuSelection()
+        {
+            $output = $this->runCliApp([
+                "1",      
+                "9",
+                "x",           
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Pilihan tidak dimengerti", $output);
+            $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
+        }
     }
