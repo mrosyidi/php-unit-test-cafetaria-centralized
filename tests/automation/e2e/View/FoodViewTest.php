@@ -184,4 +184,18 @@
 
             $this->assertStringContainsString("Gagal menambah makanan, harga makanan harus bilangan bulat.", $output);
         }
+
+        public function testAddFoodWithZeroPriceShouldFail()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",      
+                "Mie Ayam",
+                "0",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah makanan, harga makanan harus bilangan positif.", $output);
+        }
     }
