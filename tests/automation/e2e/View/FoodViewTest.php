@@ -294,4 +294,19 @@
 
             $this->assertStringContainsString("Gagal menghapus makanan nomor 5.", $output);
         }
+
+        public function testRemoveFoodWithOutOfRangeNumberShouldFail()
+        {
+            $this->foodService->addFood("Soto Daging", 12000);
+
+            $output = $this->runCliApp([
+                "1",
+                "2",
+                "3",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menghapus makanan nomor 3.", $output);
+        }
     }
