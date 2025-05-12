@@ -20,4 +20,11 @@
             $this->assertNull($drink->getName());
             $this->assertNull($drink->getPrice());
         }
+
+        public function testConstructorWithEmptyStringThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Nama tidak boleh kosong.");
+            new Drink("   ", 12000);
+        }
     }
