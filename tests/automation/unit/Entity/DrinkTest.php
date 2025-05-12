@@ -69,4 +69,11 @@
             $drink->setPrice(7000);
             $this->assertEquals(7000, $drink->getPrice());
         }
+
+        public function testSetPriceWithNullValue()
+        {
+            $drink = new Drink("Jus Wortel", 6000);
+            $drink->setPrice(null);
+            $this->assertNull($drink->getPrice());
+        }
     }
