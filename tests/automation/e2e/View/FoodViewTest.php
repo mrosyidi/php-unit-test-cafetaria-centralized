@@ -242,4 +242,17 @@
             $this->assertStringContainsString("Sukses menambah makanan.", $output);
             $this->assertStringContainsString("1. Mie Ayam  Rp.7000", $output);
         }
+
+        public function testRemoveFoodWhenNumberIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "2",
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Batal menghapus makanan.", $output);
+        }
     }
