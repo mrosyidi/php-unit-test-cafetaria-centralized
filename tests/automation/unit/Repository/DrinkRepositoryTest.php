@@ -66,4 +66,17 @@
 
             $this->assertNull($drinks[0]->getName());
         }
+
+        public function testFindAllWithEmptyString()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => '', 'price' => 12000]
+            ]);
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Nama tidak boleh kosong.");
+
+            $this->drinkRepository->findAll();
+        }
     }
