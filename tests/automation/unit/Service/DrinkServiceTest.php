@@ -1,0 +1,42 @@
+<?php 
+
+    namespace Cafetaria;
+
+    use PHPUnit\Framework\TestCase;
+    use Cafetaria\Service\DrinkServiceImpl;
+    use Cafetaria\Repository\DrinkRepository;
+    use Cafetaria\Entity\Drink;
+
+    class DrinkServiceTest extends TestCase
+    {
+        private $drinkRepository;
+        private $drinkService;
+
+        protected function setUp(): void
+        {
+            $this->drinkRepository = $this->createMock(DrinkRepository::class);
+            $this->drinkService = new DrinkServiceImpl($this->drinkRepository);
+        }
+
+        public function testGetAllDrinkWhenDataExist()
+        {
+            $drinks = [
+                $this->createConfiguredMock(Drink::class, [
+                    'getName' => 'Es Oyen',
+                    'getPrice' => 12000
+                ]),
+                $this->createConfiguredMock(Drink::class, [
+                    'getName' => 'Es Campur',
+                    'getPrice' => 10000
+                ])
+            ];
+
+            $this->drinkRepository->method('findAll')->willReturn($drinks);
+
+            $drinks = $this->drinkService->getAllDrink();
+
+            $this->assertCount(2, $drinks);
+            $this->assertEquals('Es Oyen', $drinks[0]->getName());
+            $this->assertEquals(12000, $drinks[0]->getPrice());
+        }
+    }
