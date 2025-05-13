@@ -8,6 +8,7 @@
     use Cafetaria\Service\FoodServiceImpl;
     use Cafetaria\Service\DrinkServiceImpl;
     use Cafetaria\View\FoodView;
+    use Cafetaria\View\DrinkView;
     use Cafetaria\Helper\InputHelper;
 
     $connection = Database::getConnection();
@@ -19,6 +20,7 @@
     $drinkService = new DrinkServiceImpl($drinkReository);
 
     $foodView = new FoodView($foodService);
+    $drinkView = new DrinkView($drinkService);
     
     echo "Cafetaria App" . PHP_EOL;
 
