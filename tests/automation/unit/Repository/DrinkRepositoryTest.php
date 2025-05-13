@@ -45,4 +45,13 @@
 
             $this->assertCount(0, $drinks);
         }
+
+        public function testFindAllWithQueryFailure()
+        {
+            $this->statement->method('execute')->willReturn(false);
+
+            $drinks = $this->drinkRepository->findAll();
+
+            $this->assertCount(0, $drinks);
+        }
     }
