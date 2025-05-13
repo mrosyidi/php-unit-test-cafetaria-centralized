@@ -35,4 +35,14 @@
             $this->assertEquals('Jus Wortel', $drinks[0]->getName());
             $this->assertEquals(6000, $drinks[0]->getPrice());
         }
+
+        public function testFindAllWithNoData()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([]);
+
+            $drinks = $this->drinkRepository->findAll();
+
+            $this->assertCount(0, $drinks);
+        }
     }
