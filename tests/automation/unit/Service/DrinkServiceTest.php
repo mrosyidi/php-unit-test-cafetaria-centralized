@@ -39,4 +39,13 @@
             $this->assertEquals('Es Oyen', $drinks[0]->getName());
             $this->assertEquals(12000, $drinks[0]->getPrice());
         }
+
+        public function testGetAllDrinkWhenNoDataExist()
+        {
+            $this->drinkRepository->method('findAll')->willReturn([]);
+
+            $drinks = $this->drinkService->getAllDrink();
+
+            $this->assertCount(0, $drinks);
+        }
     }
