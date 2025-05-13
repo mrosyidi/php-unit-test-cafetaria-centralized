@@ -104,4 +104,17 @@
 
             $this->drinkRepository->findAll();
         }
+
+        public function testFindAllWithNegativePrice()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => 'Jus Jambu', 'price' => -12000]
+            ]);
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+
+            $this->drinkRepository->findAll();
+        }
     }
