@@ -91,4 +91,17 @@
             
             $this->assertNull($drinks[0]->getPrice());
         }
+
+        public function testFindAllWithZeroPrice()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => 'Jus Melon', 'price' => 0]
+            ]);
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+
+            $this->drinkRepository->findAll();
+        }
     }
