@@ -79,4 +79,16 @@
 
             $this->drinkRepository->findAll();
         }
+
+        public function testFindAllWithNullPrice()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => 'Es Campur', 'price' => null]
+            ]);
+
+            $drinks = $this->drinkRepository->findAll();
+            
+            $this->assertNull($drinks[0]->getPrice());
+        }
     }
