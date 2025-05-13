@@ -54,4 +54,16 @@
 
             $this->assertCount(0, $drinks);
         }
+
+        public function testFindAllWithNullName()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([
+                ['name' => null, 'price' => 12000]
+            ]);
+
+            $drinks = $this->drinkRepository->findAll();
+
+            $this->assertNull($drinks[0]->getName());
+        }
     }
