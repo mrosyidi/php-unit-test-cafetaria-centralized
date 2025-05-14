@@ -140,4 +140,19 @@
 
             $this->drinkRepository->save(new Drink("Jus Wortel", 6000));
         }
+
+        public function testSaveExecuteFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("INSERT INTO drinks(name,price) VALUES(?,?)")
+            ->willReturn($this->statement);
+
+            $this->statement->expects($this->once())
+            ->method('execute')
+            ->will($this->throwException(new \PDOException("Execution failed")));
+
+            $this->drinkRepository->save(new Drink("Es Teh", 4000));
+        }
     }
