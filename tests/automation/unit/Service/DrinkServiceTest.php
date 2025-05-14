@@ -56,4 +56,10 @@
 
             $this->drinkService->addDrink("Es Campur", 12000);
         }
+
+        public function testAddDrinkWithEmptyNameThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->drinkService->addDrink("", 12000);
+        }
     }
