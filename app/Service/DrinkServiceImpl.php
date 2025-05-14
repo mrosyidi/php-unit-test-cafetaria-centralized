@@ -22,7 +22,8 @@
 
         public function addDrink(string $name, int $price): void
         {
-            
+            $drink = new Drink($name, $price);
+            $this->drinkRepository->save($drink);
         }
 
         public function removeDrink(string $name): bool
