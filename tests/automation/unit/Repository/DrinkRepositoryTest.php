@@ -117,4 +117,16 @@
 
             $this->drinkRepository->findAll();
         }
+
+        public function testSaveSuccess()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(["Es Campur", 10000]);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("INSERT INTO drinks(name,price) VALUES(?,?)")
+            ->willReturn($this->statement);
+
+            $this->drinkRepository->save(new Drink("Es Campur", 10000));
+        }
     }
