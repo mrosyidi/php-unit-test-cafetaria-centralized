@@ -129,4 +129,15 @@
 
             $this->drinkRepository->save(new Drink("Es Campur", 10000));
         }
+
+        public function testSavePrepareFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->drinkRepository->save(new Drink("Jus Wortel", 6000));
+        }
     }
