@@ -107,4 +107,14 @@
 
             $this->assertFalse($result);
         }
+
+        public function testRemoveDrinkThrowsException()
+        {
+            $this->drinkRepository->expects($this->once())
+            ->method('remove')
+            ->willThrowException(new \PDOException("DB error"));
+
+            $this->expectException(\PDOException::class);
+            $this->drinkService->removeDrink('Es Buah');
+        }
     }
