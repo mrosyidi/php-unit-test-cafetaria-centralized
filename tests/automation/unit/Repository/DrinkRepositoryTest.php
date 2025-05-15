@@ -211,4 +211,21 @@
 
             $this->drinkRepository->remove("Es Pisang Ijo");
         }
+
+        public function testRemoveReturnsTrueWhenMultipleRowDeleted()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(['Jus Apel']);
+
+            $this->statement->expects($this->once())
+            ->method('rowCount')->willReturn(2);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM drinks WHERE name=?")
+            ->willReturn($this->statement);
+
+            $result = $this->drinkRepository->remove('Jus Apel');
+
+            $this->assertTrue($result);
+        }
     }
