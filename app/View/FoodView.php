@@ -3,7 +3,6 @@
     namespace Cafetaria\View;
 
     use Cafetaria\Service\FoodService;
-    use Cafetaria\Helper\CheckHelper;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\Validator\FoodValidator;
 

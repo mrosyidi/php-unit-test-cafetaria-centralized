@@ -4,6 +4,7 @@
 
     use Cafetaria\Service\DrinkService;
     use Cafetaria\Helper\InputHelper;
+    use Cafetaria\Validator\DrinkValidator;
 
     class DrinkView 
     {
@@ -56,5 +57,64 @@
                     echo "Pilihan tidak dimengerti" . PHP_EOL;
                 }
             }
+        }
+
+        public function addDrink(): void 
+        {
+            $drinks = $this->drinkService->getAllDrink();
+
+            echo "MENAMBAH MINUMAN" . PHP_EOL;
+
+            $name = InputHelper::input("Nama minuman (x untuk batal)");
+
+            if($name == "x")
+            {
+                echo "Batal menambah minuman." . PHP_EOL;
+                return;
+            }
+            
+            if(!DrinkValidator::isValidName($name))
+            {
+                echo "Gagal menambah minuman, nama tidak boleh kosong." . PHP_EOL;
+                return;
+            }
+
+            if(DrinkValidator::isDuplicate($drinks, $name))
+            {
+                echo "Gagal menambah minuman, nama makanan sudah ada." . PHP_EOL;
+                return;
+            }
+
+            $price = InputHelper::input("Harga minuman (x untuk batal)");
+
+            if($price == "x")
+            {
+                echo "Batal menambah minuman." . PHP_EOL;
+                return;
+            }
+
+            if(!is_numeric($price))
+            {
+                echo "Gagal menambah minuman, harga makanan harus bilangan." . PHP_EOL;
+                return;
+            }
+
+            if (filter_var($price, FILTER_VALIDATE_INT) === false) 
+            {
+                echo "Gagal menambah minuman, harga makanan harus bilangan bulat." . PHP_EOL;
+                return;
+            }
+            
+            $price = (int)$price;  
+
+            if($price <= 0)
+            {
+                echo "Gagal menambah minuman, harga makanan harus bilangan positif." . PHP_EOL;
+                return;
+            }
+
+            $this->drinkService->addDrink($name, $price);
+
+            echo "Sukses menambah minuman." . PHP_EOL;
         }
     }
