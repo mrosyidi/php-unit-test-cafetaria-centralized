@@ -42,7 +42,11 @@
 
         public function remove(string $name): bool
         {
-            
+            $sql = "DELETE FROM drinks WHERE name=?";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute([$name]);
+
+            return $statement->rowCount() > 0;
         }
 
         public function removeAll(): void 
