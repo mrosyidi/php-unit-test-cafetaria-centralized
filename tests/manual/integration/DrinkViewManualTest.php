@@ -28,4 +28,4 @@
         $drinkView->addDrink();
     }
 
-    testViewAddDrink();
+    testViewShowDrink();
