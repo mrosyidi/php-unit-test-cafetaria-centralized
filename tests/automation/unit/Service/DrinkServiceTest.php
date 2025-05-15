@@ -96,4 +96,15 @@
 
             $this->assertTrue($result);
         }
+
+        public function testRemoveDrinkReturnsFalse()
+        {
+            $this->drinkRepository->expects($this->once())
+            ->method('remove')->with('Jus Jambu')
+            ->willReturn(false);
+
+            $result = $this->drinkService->removeDrink('Jus Jambu');
+
+            $this->assertFalse($result);
+        }
     }
