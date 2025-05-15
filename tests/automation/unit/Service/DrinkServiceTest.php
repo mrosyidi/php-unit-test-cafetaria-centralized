@@ -85,4 +85,15 @@
 
             $this->drinkService->addDrink("Es Teh", 4000);
         }
+
+        public function testRemoveDrinkReturnsTrue()
+        {
+            $this->drinkRepository->expects($this->once())
+            ->method('remove')->with('Jus Jeruk')
+            ->willReturn(true);
+
+            $result = $this->drinkService->removeDrink('Jus Jeruk');
+
+            $this->assertTrue($result);
+        }
     }
