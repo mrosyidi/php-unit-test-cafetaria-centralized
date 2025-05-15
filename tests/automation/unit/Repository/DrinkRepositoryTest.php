@@ -172,4 +172,21 @@
 
             $this->assertTrue($result);
         }
+
+        public function testRemoveReturnsFalseWhenNoRowDeleted()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(['Es Oyen']);
+
+            $this->statement->expects($this->once())
+            ->method('rowCount')->willReturn(0);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM drinks WHERE name=?")
+            ->willReturn($this->statement);
+
+            $result = $this->drinkRepository->remove('Es Oyen');
+
+            $this->assertFalse($result);
+        }
     }
