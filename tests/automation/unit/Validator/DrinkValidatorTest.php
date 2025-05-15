@@ -15,4 +15,15 @@
             $this->assertFalse(DrinkValidator::isValidName(""));
             $this->assertTrue(DrinkValidator::isValidName("   Es Oyen  "));
         }
+
+        public function testIsDuplicateReturnsTrueWhenDuplicateExists()
+        {
+            $drink = $this->createMock(Drink::class);
+            
+            $drink->method('getName')->willReturn('Jus Alpukat');
+
+            $drinks[] = $drink;
+
+            $this->assertTrue(DrinkValidator::isDuplicate($drinks, 'jus alpukat'));
+        }
     }
