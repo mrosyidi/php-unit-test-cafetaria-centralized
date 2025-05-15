@@ -74,4 +74,15 @@
             $this->expectException(\InvalidArgumentException::class);
             $this->drinkService->addDrink("Es Oyen", -12000);
         }
+
+        public function testAddDrinkSaveFailsThrowsException()
+        {
+            $this->drinkRepository->expects($this->once())
+            ->method('save')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->expectException(\PDOException::class);
+
+            $this->drinkService->addDrink("Es Teh", 4000);
+        }
     }
