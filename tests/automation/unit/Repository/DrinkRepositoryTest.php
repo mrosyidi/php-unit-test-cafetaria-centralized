@@ -199,4 +199,16 @@
 
             $this->drinkRepository->remove('Jus Jambu');
         }
+
+        public function testRemoveThrowsExceptionOnExecuteFailure()
+        {
+            $this->statement->method('execute')
+            ->willThrowException(new \PDOException("Execution failed"));
+
+            $this->pdo->method('prepare')->willReturn($this->statement);
+
+            $this->expectException(\PDOException::class);
+
+            $this->drinkRepository->remove("Es Pisang Ijo");
+        }
     }
