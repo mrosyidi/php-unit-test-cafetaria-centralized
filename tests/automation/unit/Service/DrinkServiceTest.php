@@ -68,4 +68,10 @@
             $this->expectException(\InvalidArgumentException::class);
             $this->drinkService->addDrink("Es Campur", 0);
         }
+
+        public function testAddDrinkWithNegativePriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->drinkService->addDrink("Es Oyen", -12000);
+        }
     }
