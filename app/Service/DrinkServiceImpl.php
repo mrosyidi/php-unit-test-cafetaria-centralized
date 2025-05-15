@@ -28,6 +28,6 @@
 
         public function removeDrink(string $name): bool
         {
-            
+            return $this->drinkRepository->remove($name);
         }
     }
