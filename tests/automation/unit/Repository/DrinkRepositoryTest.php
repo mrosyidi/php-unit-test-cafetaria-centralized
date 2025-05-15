@@ -155,4 +155,21 @@
 
             $this->drinkRepository->save(new Drink("Es Teh", 4000));
         }
+
+        public function testRemoveReturnsTrueWhenRowDeleted()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with(['Es Campur']);
+
+            $this->statement->expects($this->once())
+            ->method('rowCount')->willReturn(1);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM drinks WHERE name=?")
+            ->willReturn($this->statement);
+
+            $result = $this->drinkRepository->remove('Es Campur');
+
+            $this->assertTrue($result);
+        }
     }
