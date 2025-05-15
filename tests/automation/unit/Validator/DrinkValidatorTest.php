@@ -26,4 +26,15 @@
 
             $this->assertTrue(DrinkValidator::isDuplicate($drinks, 'jus alpukat'));
         }
+
+        public function testIsDuplicateReturnsFalseWhenNoDuplicate()
+        {
+            $drink = $this->createMock(Drink::class);
+            
+            $drink->method('getName')->willReturn('Es Campur');
+
+            $drinks[] = $drink;
+
+            $this->assertFalse(DrinkValidator::isDuplicate($drinks, 'Jus Anggur'));
+        }
     }
