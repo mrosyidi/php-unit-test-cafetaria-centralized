@@ -81,7 +81,7 @@
 
             if(DrinkValidator::isDuplicate($drinks, $name))
             {
-                echo "Gagal menambah minuman, nama makanan sudah ada." . PHP_EOL;
+                echo "Gagal menambah minuman, nama minuman sudah ada." . PHP_EOL;
                 return;
             }
 
