@@ -62,4 +62,17 @@
             $this->assertStringContainsString("Tidak ada daftar minuman", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
+
+        public function testShowDrinkWhenFoodExists()
+        {
+            $this->drinkService->addDrink("Es Campur", 12000);
+
+            $output = $this->runCliApp([
+                "2",      
+                "x",           
+                "x"
+            ]);
+
+            $this->assertStringContainsString("1. Es Campur  Rp.12000", $output);
+        }
     }
