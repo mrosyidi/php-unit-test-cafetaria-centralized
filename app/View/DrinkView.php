@@ -109,7 +109,7 @@
 
             if($price <= 0)
             {
-                echo "Gagal menambah minuman, harga makanan harus bilangan positif." . PHP_EOL;
+                echo "Gagal menambah minuman, harga minuman harus bilangan positif." . PHP_EOL;
                 return;
             }
 
