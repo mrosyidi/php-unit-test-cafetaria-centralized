@@ -33,4 +33,11 @@
             $this->assertEquals($drink->getName(), $drinks[0]->getName());
             $this->assertEquals($drink->getPrice(), $drinks[0]->getPrice());
         }
+
+        public function testGetAllDrinkWithNoData()
+        {
+            $drinks = $this->drinkService->getAllDrink();
+
+            $this->assertEmpty($drinks);
+        }
     }
