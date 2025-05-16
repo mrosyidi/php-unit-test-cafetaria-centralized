@@ -75,4 +75,21 @@
 
             $this->drinkService->addDrink("Es Campur", -12000); 
         }
+
+        public function testRemoveDrinkSuccess()
+        {
+            $this->drinkService->addDrink("Es Kelapa Muda", 5000);
+            
+            $drinks = $this->drinkService->getAllDrink();
+            
+            $this->assertCount(1, $drinks);
+
+            $result = $this->drinkService->removeDrink("Es Kelapa Muda");
+
+            $this->assertTrue($result);
+
+            $drinks = $this->drinkService->getAllDrink();
+
+            $this->assertCount(0, $drinks);
+        }
     }
