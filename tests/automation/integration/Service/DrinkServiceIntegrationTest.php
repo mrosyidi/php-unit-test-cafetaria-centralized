@@ -67,4 +67,12 @@
 
             $this->drinkService->addDrink("Es Teh", 0); 
         }
+
+        public function testAddDrinkWithNegativePriceThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Harga harus lebih dari nol.");
+
+            $this->drinkService->addDrink("Es Campur", -12000); 
+        }
     }
