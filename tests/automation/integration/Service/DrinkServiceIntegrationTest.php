@@ -23,7 +23,7 @@
 
         public function testGetAllDrinkWithData()
         {
-            $drink = new Drink("Mie Ayam", 7000);
+            $drink = new Drink("Jus Melon", 7000);
             
             $this->drinkRepository->save($drink);
 
@@ -91,5 +91,12 @@
             $drinks = $this->drinkService->getAllDrink();
 
             $this->assertCount(0, $drinks);
+        }
+
+        public function testRemoveDrinkReturnsFalseWhenFoodNotExist()
+        {
+            $result = $this->drinkService->removeDrink("Jus Wortel");
+            
+            $this->assertFalse($result);
         }
     }
