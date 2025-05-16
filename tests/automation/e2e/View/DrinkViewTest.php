@@ -242,4 +242,17 @@
             $this->assertStringContainsString("Sukses menambah minuman.", $output);
             $this->assertStringContainsString("1. Jus Jambu  Rp.7000", $output);
         }
+
+        public function testRemoveDrinkWhenNumberIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "2",
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Batal menghapus minuman.", $output);
+        }
     }
