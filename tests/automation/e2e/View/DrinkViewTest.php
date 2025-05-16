@@ -227,4 +227,19 @@
             $this->assertStringContainsString("Sukses menambah minuman.", $output);
             $this->assertStringContainsString("1. Es Buah  Rp.99999999999", $output);
         }
+
+        public function testAddDrinkSucces()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",      
+                "Jus Jambu",
+                "7000",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah minuman.", $output);
+            $this->assertStringContainsString("1. Jus Jambu  Rp.7000", $output);
+        }
     }
