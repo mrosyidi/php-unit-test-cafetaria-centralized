@@ -255,4 +255,17 @@
 
             $this->assertStringContainsString("Batal menghapus minuman.", $output);
         }
+
+        public function testRemoveDrinkWhenNumberIsNotNumericShouldFail()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "2",
+                "a",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menghapus minuman, nomor harus bilangan.", $output);
+        }
     }
