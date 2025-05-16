@@ -170,4 +170,18 @@
 
             $this->assertStringContainsString("Gagal menambah minuman, harga minuman harus bilangan.", $output);
         }
+
+        public function testAddDrinkWithDecimalPriceShouldFail()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",      
+                "Es Campur",
+                "12000.40",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah minuman, harga minuman harus bilangan bulat.", $output);
+        }
     }

@@ -101,7 +101,7 @@
 
             if (filter_var($price, FILTER_VALIDATE_INT) === false) 
             {
-                echo "Gagal menambah minuman, harga makanan harus bilangan bulat." . PHP_EOL;
+                echo "Gagal menambah minuman, harga minuman harus bilangan bulat." . PHP_EOL;
                 return;
             }
             
