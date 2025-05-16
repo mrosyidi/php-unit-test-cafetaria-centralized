@@ -129,4 +129,17 @@
 
             $this->assertStringContainsString("Gagal menambah minuman, nama minuman sudah ada.", $output);
         }
+
+        public function testAddDrinkWhenPriceIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",      
+                "Es Oyen",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Batal menambah minuman", $output);
+        }
     }
