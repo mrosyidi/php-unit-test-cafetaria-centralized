@@ -268,4 +268,17 @@
 
             $this->assertStringContainsString("Gagal menghapus minuman, nomor harus bilangan.", $output);
         }
+
+        public function testRemoveDrinkWhenNumberIsNegativeShouldFail()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "2",
+                "-1",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menghapus minuman nomor -1.", $output);
+        }
     }
