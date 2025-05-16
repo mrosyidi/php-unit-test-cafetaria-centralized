@@ -294,4 +294,19 @@
 
             $this->assertStringContainsString("Gagal menghapus minuman nomor 5.", $output);
         }
+
+        public function testRemoveDrinkWithOutOfRangeNumberShouldFail()
+        {
+            $this->drinkService->addDrink("Es Campur", 12000);
+
+            $output = $this->runCliApp([
+                "2",
+                "2",
+                "3",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menghapus minuman nomor 3.", $output);
+        }
     }
