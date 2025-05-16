@@ -117,4 +117,43 @@
 
             echo "Sukses menambah minuman." . PHP_EOL;
         }
+
+        public function removeDrink(): void 
+        {
+            echo "MENGHAPUS MINUMAN" . PHP_EOL;
+
+            $number = InputHelper::input("Nomor minuman (x untuk batal)");
+
+            if($number == "x")
+            {
+                echo "Batal menghapus minuman." . PHP_EOL;
+                return;
+            }
+            
+            if(!is_numeric($number))
+            {
+                echo "Gagal menghapus minuman, nomor harus bilangan." . PHP_EOL;
+                return;
+            }
+
+            $number = (int)$number;
+            $drinks = $this->drinkService->getAllDrink();
+            
+            if($number <= 0 || $number > count($drinks))
+            {
+                echo "Gagal menghapus minuman nomor $number." . PHP_EOL;
+                return;
+            }
+
+            $name = $drinks[$number-1]->getName();
+            $success = $this->drinkService->removeDrink($name);
+
+            if($success)
+            {
+                echo "Sukses menghapus minuman nomor $number." . PHP_EOL;
+            }else
+            {
+                echo "Gagal menghapus minuman nomor $number." . PHP_EOL;
+            }
+        }
     }
