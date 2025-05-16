@@ -309,4 +309,19 @@
 
             $this->assertStringContainsString("Gagal menghapus minuman nomor 3.", $output);
         }
+
+        public function testRemoveDrinkSuccess()
+        {
+            $this->drinkService->addDrink("Es Buah", 12000);
+
+            $output = $this->runCliApp([
+                "2",
+                "2",
+                "1",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menghapus minuman nomor 1.", $output);
+        }
     }
