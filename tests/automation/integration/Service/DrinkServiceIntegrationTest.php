@@ -40,4 +40,15 @@
 
             $this->assertEmpty($drinks);
         }
+
+        public function testAddDrinkSuccess()
+        {
+            $this->drinkService->addDrink("Es Oyen", 12000);
+
+            $drinks = $this->drinkService->getAllDrink();
+
+            $this->assertCount(1, $drinks);
+            $this->assertEquals("Es Oyen", $drinks[0]->getName());
+            $this->assertEquals(12000, $drinks[0]->getPrice());
+        }
     }
