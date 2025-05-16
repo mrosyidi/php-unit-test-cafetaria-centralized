@@ -51,4 +51,12 @@
             $this->assertEquals("Es Oyen", $drinks[0]->getName());
             $this->assertEquals(12000, $drinks[0]->getPrice());
         }
+
+        public function testAddDrinkWithEmptyNameThrowsException()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage("Nama tidak boleh kosong.");
+
+            $this->drinkService->addDrink("", 10000); 
+        }
     }
