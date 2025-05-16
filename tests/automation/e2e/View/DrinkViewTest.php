@@ -198,4 +198,18 @@
 
             $this->assertStringContainsString("Gagal menambah minuman, harga minuman harus bilangan positif.", $output);
         }
+
+        public function testAddDrinkWithNegativePriceShouldFail()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",      
+                "Jus Melon",
+                "-7000",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah minuman, harga minuman harus bilangan positif.", $output);
+        }
     }
