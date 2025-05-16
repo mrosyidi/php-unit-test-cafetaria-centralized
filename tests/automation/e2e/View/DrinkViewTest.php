@@ -142,4 +142,18 @@
 
             $this->assertStringContainsString("Batal menambah minuman", $output);
         }
+
+        public function testAddDrinkWithEmptyPriceShouldFail()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",      
+                "Jus Wortel",
+                "",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah minuman, harga minuman harus bilangan.", $output);
+        }
     }
