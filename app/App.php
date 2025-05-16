@@ -41,7 +41,7 @@
             $foodView->showFood();
         }else if($pilihan == "2")
         {
-
+            $drinkView->showDrink();
         }else if($pilihan == "3")
         {
 
