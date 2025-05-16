@@ -38,4 +38,4 @@
         $drinkView->removeDrink();
     }
 
-    testViewRemoveDrink();
+    testViewShowDrink();
