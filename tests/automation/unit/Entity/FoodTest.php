@@ -4,6 +4,7 @@
     
     use PHPUnit\Framework\TestCase;
     use Cafetaria\Entity\Food;
+    use Cafetaria\Exception\InvalidFoodException;
 
     class FoodTest extends TestCase
     {
@@ -23,21 +24,21 @@
 
         public function testConstructorWithEmptyStringThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
             new Food("   ", 12000);
         }
 
         public function testConstructorWithZeroPriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Food("Soto Ayam", 0);
         }
 
         public function testConstructorWithNegativePriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Food("Mie Ayam", -7000);
         }
@@ -58,7 +59,7 @@
 
         public function testSetNameWithEmptyStringThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $food = new Food("Soto Daging", 15000);
             $food->setName(" ");
         }
@@ -79,14 +80,14 @@
 
         public function testSetPriceWithZeroThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $food = new Food("Bebek Goreng", 15000);
             $food->setPrice(0);
         }
 
         public function testSetPriceWithNegativeThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $food = new Food("Bebek Bakar", 15000);
             $food->setPrice(-1000);
         }

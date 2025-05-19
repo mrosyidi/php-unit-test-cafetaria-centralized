@@ -3,10 +3,11 @@
     namespace Cafetaria;
 
     use PHPUnit\Framework\TestCase;
-    use Cafetaria\Service\DrinkServiceImpl;
-    use Cafetaria\Repository\DrinkRepository;
     use Cafetaria\Entity\Drink;
-
+    use Cafetaria\Repository\DrinkRepository;
+    use Cafetaria\Service\DrinkServiceImpl;
+    use Cafetaria\Exception\InvalidDrinkException;
+ 
     class DrinkServiceTest extends TestCase
     {
         private $drinkRepository;
@@ -59,19 +60,19 @@
 
         public function testAddDrinkWithEmptyNameThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->drinkService->addDrink("", 12000);
         }
 
         public function testAddDrinkWithZeroPriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->drinkService->addDrink("Es Campur", 0);
         }
 
         public function testAddDrinkWithNegativePriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->drinkService->addDrink("Es Oyen", -12000);
         }
 

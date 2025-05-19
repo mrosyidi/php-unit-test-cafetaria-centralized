@@ -3,8 +3,10 @@
     namespace Cafetaria;
 
     use PHPUnit\Framework\TestCase;
-    use Cafetaria\Repository\FoodRepositoryImpl;
     use Cafetaria\Entity\Food;
+    use Cafetaria\Repository\FoodRepositoryImpl;
+    use Cafetaria\Exception\InvalidFoodException;
+
 
     class FoodRepositoryTest extends TestCase
     {
@@ -75,7 +77,7 @@
                 ['name' => '', 'price' => 12000]
             ]);
 
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
 
             $this->foodRepository->findAll();
@@ -100,7 +102,7 @@
                 ['name' => 'Nasi Goreng', 'price' => 0]
             ]);
 
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
 
             $this->foodRepository->findAll();
@@ -113,7 +115,7 @@
                 ['name' => 'Nasi Goreng', 'price' => -12000]
             ]);
 
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
 
             $this->foodRepository->findAll();

@@ -2,6 +2,8 @@
 
     namespace Cafetaria\Entity;
 
+    use Cafetaria\Exception\InvalidFoodException;
+
     class Food 
     {
         private ?string $name;
@@ -11,12 +13,12 @@
         {
             if($name !== null && trim($name) === '')
             {
-                throw new \InvalidArgumentException("Nama tidak boleh kosong.");
+                throw new InvalidFoodException("Nama tidak boleh kosong.");
             }
 
             if($price !== null && $price <= 0)
             {
-                throw new \InvalidArgumentException("Harga harus lebih dari nol.");
+                throw new InvalidFoodException("Harga harus lebih dari nol.");
             }
 
             $this->name = $name;
@@ -32,7 +34,7 @@
         {
             if($name !== null && trim($name) === '')
             {
-                throw new \InvalidArgumentException("Nama tidak boleh kosong.");
+                throw new InvalidFoodException("Nama tidak boleh kosong.");
             }
 
             $this->name = $name;
@@ -47,7 +49,7 @@
         {
             if($price !== null && $price <= 0)
             {
-                throw new \InvalidArgumentException("Harga harus lebih dari nol.");
+                throw new InvalidFoodException("Harga harus lebih dari nol.");
             }
 
             $this->price = $price;

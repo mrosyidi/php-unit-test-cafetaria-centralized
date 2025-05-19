@@ -4,6 +4,7 @@
     
     use PHPUnit\Framework\TestCase;
     use Cafetaria\Entity\Drink;
+    use Cafetaria\Exception\InvalidDrinkException;
 
     class DrinkTest extends TestCase
     {
@@ -23,21 +24,21 @@
 
         public function testConstructorWithEmptyStringThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
             new Drink("   ", 12000);
         }
 
         public function testConstructorWithZeroPriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Drink("Es Oyen", 0);
         }
 
         public function testConstructorWithNegativePriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
             new Drink("Mie Ayam", -7000);
         }
@@ -58,7 +59,7 @@
 
         public function testSetNameWithEmptyStringThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $drink = new Drink("Jus Jambu", 7000);
             $drink->setName(" ");
         }
@@ -79,14 +80,14 @@
 
         public function testSetPriceWithZeroThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $drink = new Drink("Jus Semangka", 7000);
             $drink->setPrice(0);
         }
 
         public function testSetPriceWithNegativeThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $drink = new Drink("Es Campur", 12000);
             $drink->setPrice(-10000);
         }

@@ -7,6 +7,7 @@
     use Cafetaria\Entity\Drink;
     use Cafetaria\Repository\DrinkRepositoryImpl;
     use Cafetaria\Service\DrinkServiceImpl;
+    use Cafetaria\Exception\InvalidDrinkException;
 
     class DrinkServiceIntegrationTest extends TestCase 
     {
@@ -54,7 +55,7 @@
 
         public function testAddDrinkWithEmptyNameThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
 
             $this->drinkService->addDrink("", 10000); 
@@ -62,7 +63,7 @@
 
         public function testAddDrinkWithZeroPriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
 
             $this->drinkService->addDrink("Es Teh", 0); 
@@ -70,7 +71,7 @@
 
         public function testAddDrinkWithNegativePriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidDrinkException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
 
             $this->drinkService->addDrink("Es Campur", -12000); 

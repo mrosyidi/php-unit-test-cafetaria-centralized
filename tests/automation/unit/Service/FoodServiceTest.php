@@ -3,9 +3,10 @@
     namespace Cafetaria;
 
     use PHPUnit\Framework\TestCase;
-    use Cafetaria\Service\FoodServiceImpl;
-    use Cafetaria\Repository\FoodRepository;
     use Cafetaria\Entity\Food;
+    use Cafetaria\Repository\FoodRepository;
+    use Cafetaria\Service\FoodServiceImpl;
+    use Cafetaria\Exception\InvalidFoodException;
 
     class FoodServiceTest extends TestCase
     {
@@ -59,19 +60,19 @@
 
         public function testAddFoodWithEmptyNameThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->foodService->addFood("", 12000);
         }
 
         public function testAddFoodWithZeroPriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->foodService->addFood("Rawon", 0);
         }
 
         public function testAddFoodWithNegativePriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->foodService->addFood("Soto Daging", -12000);
         }
 

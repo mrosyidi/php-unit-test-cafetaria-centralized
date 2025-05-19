@@ -7,6 +7,7 @@
     use Cafetaria\Entity\Food;
     use Cafetaria\Repository\FoodRepositoryImpl;
     use Cafetaria\Service\FoodServiceImpl;
+    use Cafetaria\Exception\InvalidFoodException;
 
     class FoodServiceIntegrationTest extends TestCase 
     {
@@ -54,7 +55,7 @@
 
         public function testAddFoodWithEmptyNameThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Nama tidak boleh kosong.");
 
             $this->foodService->addFood("", 10000); 
@@ -62,7 +63,7 @@
 
         public function testAddFoodWithZeroPriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
 
             $this->foodService->addFood("Gado-Gado", 0); 
@@ -70,7 +71,7 @@
 
         public function testAddFoodWithNegativePriceThrowsException()
         {
-            $this->expectException(\InvalidArgumentException::class);
+            $this->expectException(InvalidFoodException::class);
             $this->expectExceptionMessage("Harga harus lebih dari nol.");
 
             $this->foodService->addFood("Gado-Gado", -12000); 
