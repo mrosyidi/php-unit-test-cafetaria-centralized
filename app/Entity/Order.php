@@ -19,7 +19,7 @@
                 throw new InvalidOrderException("Harga tidak boleh negatif.");
             }
 
-            if($qty === null || $qty <= 0)
+            if($qty !== null && $qty <= 0)
             {
                 throw new InvalidOrderException("Kuantitas harus lebih dari nol.");
             }

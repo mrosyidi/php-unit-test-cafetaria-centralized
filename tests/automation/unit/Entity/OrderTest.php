@@ -24,4 +24,11 @@
             $this->assertNull($order->getPrice());
             $this->assertNull($order->getSubTotal());
         }
+
+        public function testConstructWithNullQtySetsSubTotalToNull()
+        {
+            $order = new Order(1, "Es Oyen", 12000, null);
+            $this->assertNull($order->getQty());
+            $this->assertNull($order->getSubTotal());
+        }
     }
