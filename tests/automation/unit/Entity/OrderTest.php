@@ -39,4 +39,12 @@
             $this->assertEquals(15000, $order->getPrice());
             $this->assertEquals(15000, $order->getSubTotal());
         }
+
+        public function testSetQtyUpdatesSubTotal()
+        {
+            $order = new Order(1, "Rawon", 12000, 1);
+            $order->setQty(3);
+            $this->assertEquals(3, $order->getQty());
+            $this->assertEquals(36000, $order->getSubTotal());
+        }
     }
