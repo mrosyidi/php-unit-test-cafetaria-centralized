@@ -56,4 +56,13 @@
             $order = new Order();
             $order->setPrice(-10000);
         }
+
+        public function testSetQtyThrowsExceptionWhenZero()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
+
+            $order = new Order();
+            $order->setQty(0);
+        }   
     }
