@@ -64,5 +64,14 @@
 
             $order = new Order();
             $order->setQty(0);
-        }   
+        }  
+        
+        public function testSetQtyThrowsExceptionWhenNegative()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
+
+            $order = new Order();
+            $order->setQty(-2);
+        }  
     }
