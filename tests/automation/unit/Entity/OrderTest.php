@@ -47,4 +47,13 @@
             $this->assertEquals(3, $order->getQty());
             $this->assertEquals(36000, $order->getSubTotal());
         }
+
+        public function testSetPriceThrowsExceptionWhenNegative()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->expectExceptionMessage("Harga tidak boleh negatif.");
+
+            $order = new Order();
+            $order->setPrice(-10000);
+        }
     }
