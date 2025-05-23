@@ -51,4 +51,14 @@
 
             $this->assertCount(0, $orders);
         }
+
+        public function testFindAllWithQueryFailure()
+        {
+            $this->statement->method('execute')->willReturn(false);
+
+            $orders = $this->orderRepository->findAll();
+
+            $this->assertCount(0, $orders);
+
+        }
     }
