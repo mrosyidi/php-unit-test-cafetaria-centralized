@@ -41,4 +41,14 @@
             $this->assertEquals(2, $orders[0]->getQty());
             $this->assertEquals(20000, $orders[0]->getSubTotal());
         }
+
+        public function testFindAllWithNoData()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([]);
+
+            $orders = $this->orderRepository->findAll();
+
+            $this->assertCount(0, $orders);
+        }
     }
