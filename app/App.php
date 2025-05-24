@@ -5,6 +5,7 @@
     use Cafetaria\Config\Database;
     use Cafetaria\Repository\FoodRepositoryImpl;
     use Cafetaria\Repository\DrinkRepositoryImpl;
+    use Cafetaria\Repository\OrderRepositoryImpl;
     use Cafetaria\Service\FoodServiceImpl;
     use Cafetaria\Service\DrinkServiceImpl;
     use Cafetaria\View\FoodView;
@@ -14,10 +15,11 @@
     $connection = Database::getConnection();
 
     $foodRepository = new FoodRepositoryImpl($connection);
-    $drinkReository = new DrinkRepositoryImpl($connection);
+    $drinkRepository = new DrinkRepositoryImpl($connection);
+    $orderRepository = new OrderRepositoryImpl($connection);
 
     $foodService = new FoodServiceImpl($foodRepository);
-    $drinkService = new DrinkServiceImpl($drinkReository);
+    $drinkService = new DrinkServiceImpl($drinkRepository);
 
     $foodView = new FoodView($foodService);
     $drinkView = new DrinkView($drinkService);
