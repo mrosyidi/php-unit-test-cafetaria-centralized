@@ -37,7 +37,10 @@
 
         public function save(Order $order): void 
         {
-
+            $sql = "INSERT INTO orders(code,name,price,qty,sub_total) VALUES(?,?,?,?,?)";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute([$order->getCode(),$order->getName(),
+            $order->getPrice(),$order->getQty(),$order->getSubTotal()]);
         }
 
         public function remove(int $code): void 
