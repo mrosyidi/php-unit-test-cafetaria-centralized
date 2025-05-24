@@ -49,4 +49,13 @@
             $this->assertEquals(1, $orders[0]->getQty());
             $this->assertEquals(12000, $orders[0]->getSubTotal());
         }
+
+        public function testGetAllOrderWhenNoDataExist()
+        {
+            $this->orderRepository->method('findAll')->willReturn([]);
+
+            $orders = $this->orderService->getAllOrder();
+
+            $this->assertCount(0, $orders);
+        }
     }
