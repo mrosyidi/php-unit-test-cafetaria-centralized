@@ -59,6 +59,18 @@
             $orders = $this->orderRepository->findAll();
 
             $this->assertCount(0, $orders);
+        }
 
+        public function testSaveSuccess()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with([1, "Soto Ayam", 10000, 2, 20000]);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->with("INSERT INTO orders(code,name,price,qty,sub_total) VALUES(?,?,?,?,?)")
+            ->willReturn($this->statement);
+
+            $this->orderRepository->save(new Order(1, "Soto Ayam", 10000, 2, 20000));
         }
     }
