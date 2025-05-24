@@ -73,4 +73,15 @@
 
             $this->orderRepository->save(new Order(1, "Soto Ayam", 10000, 2, 20000));
         }
+
+        public function testSavePrepareFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->orderRepository->save(new Order(1, "Rawon", 12000, 1, 12000));
+        }
     }
