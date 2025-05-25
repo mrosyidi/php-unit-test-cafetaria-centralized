@@ -58,4 +58,12 @@
 
             $this->assertCount(0, $orders);
         }
+
+        public function testAddOrderSuccess()
+        {
+            $this->orderRepository->expects($this->once())
+            ->method('save')->with(new Order(1, "Ayam Panggang", 2, 24000));
+
+            $this->orderService->addOrder(1, "Ayam Panggang", 2, 24000);
+        }
     }
