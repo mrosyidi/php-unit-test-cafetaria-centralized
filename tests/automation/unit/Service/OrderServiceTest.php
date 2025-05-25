@@ -84,4 +84,15 @@
             $this->expectException(InvalidOrderException::class);
             $this->orderService->addOrder(1, "Es Oyen", 12000, -3, -36000);
         }
+
+        public function testAddOrderSaveFailsThrowsException()
+        {
+            $this->orderRepository->expects($this->once())
+            ->method('save')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->expectException(\PDOException::class);
+
+            $this->orderService->addOrder(1, "Es Campur", 12000, 1, 12000);
+        }
     }
