@@ -62,8 +62,14 @@
         public function testAddOrderSuccess()
         {
             $this->orderRepository->expects($this->once())
-            ->method('save')->with(new Order(1, "Ayam Panggang", 2, 24000));
+            ->method('save')->with(new Order(1, "Ayam Panggang", 12000, 2, 24000));
 
-            $this->orderService->addOrder(1, "Ayam Panggang", 2, 24000);
+            $this->orderService->addOrder(1, "Ayam Panggang", 12000, 2, 24000);
+        }
+
+        public function testAddOrderWithNegativePriceThrowsException()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->orderService->addOrder(1, "Mie Ayam", -12000, 2, -24000);
         }
     }
