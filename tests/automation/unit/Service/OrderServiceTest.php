@@ -78,4 +78,10 @@
             $this->expectException(InvalidOrderException::class);
             $this->orderService->addOrder(1, "Rawon", 12000, 0, 0);
         }
+
+        public function testAddOrderWithNegativeQtyThrowsException()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->orderService->addOrder(1, "Es Oyen", 12000, -3, -36000);
+        }
     }
