@@ -84,4 +84,20 @@
 
             $this->orderRepository->save(new Order(1, "Rawon", 12000, 1, 12000));
         }
+
+        public function testSaveExecuteFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->with("INSERT INTO orders(code,name,price,qty,sub_total) VALUES(?,?,?,?,?)")
+            ->willReturn($this->statement);
+
+            $this->statement->expects($this->once())
+            ->method('execute')
+            ->will($this->throwException(new \PDOException("Execution failed")));
+
+            $this->orderRepository->save(new Order(1, "Soto Ayam", 10000, 2, 20000));
+        }
     }
