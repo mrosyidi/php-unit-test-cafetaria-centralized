@@ -22,7 +22,8 @@
 
         public function addOrder(int $code, string $name, int $price, int $qty): void 
         {
-
+            $order = new Order($code, $name, $price, $qty);
+            $this->orderRepository->save($order);
         }
 
         public function removeOrder(int $code): void
