@@ -37,4 +37,10 @@
             $items = [1, 2, 3];
             $this->assertFalse(OrderValidator::isWithinRange($items, 5));
         }
+
+        public function testEmptyItemsArrayShouldReturnFalse()
+        {
+            $items = [];
+            $this->assertFalse(OrderValidator::isWithinRange($items, 1));
+        }
     }
