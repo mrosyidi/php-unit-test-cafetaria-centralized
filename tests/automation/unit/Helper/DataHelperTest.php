@@ -42,4 +42,14 @@
 
             DataHelper::data($items, 3);
         }
+
+        public function testDataThrowsExceptionItemIsNotObject()
+        {
+            $items = ["Bukan objek"];
+
+            $this->expectException(\Exception::class);
+            $this->expectExceptionMessage('Item dalam index harus berupa objek.');
+
+            DataHelper::data($items, 0);
+        }
     }
