@@ -31,4 +31,10 @@
             $items = [1, 2];
             $this->assertFalse(OrderValidator::isWithinRange($items, -1));
         }
+
+        public function testNumberGreaterThanCountShouldReturnFalse()
+        {
+            $items = [1, 2, 3];
+            $this->assertFalse(OrderValidator::isWithinRange($items, 5));
+        }
     }
