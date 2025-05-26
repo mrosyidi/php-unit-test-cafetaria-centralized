@@ -39,4 +39,16 @@
 
             $this->assertEquals(4, CodeHelper::code($orders, $payments, false));
         }
+
+        public function testCodeOrdersWithExitNoPayments()
+        {
+            $orders = [
+                new Order(3, 2), 
+                new Order(6, 3)
+            ];
+
+            $payments = [];
+
+            $this->assertEquals(7, CodeHelper::code($orders, $payments, true));
+        }
     }
