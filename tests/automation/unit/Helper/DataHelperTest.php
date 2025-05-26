@@ -52,4 +52,14 @@
 
             DataHelper::data($items, 0);
         }
+
+        public function testDataThrowsExceptionItemMissingMethods()
+        {
+            $items = [new \stdClass()];
+
+            $this->expectException(\Exception::class);
+            $this->expectExceptionMessage('Item harus memiliki metode getName() dan getPrice().');
+
+            DataHelper::data($items, 0);
+        }
     }
