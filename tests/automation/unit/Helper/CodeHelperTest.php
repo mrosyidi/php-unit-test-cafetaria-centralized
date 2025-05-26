@@ -77,4 +77,16 @@
             $this->expectException(\Exception::class);
             CodeHelper::code($orders, $payments, true);
         }
+
+        public function testCodeThrowsExceptionInvalidPayment()
+        {
+            $orders = [];
+
+            $payments = [
+                new \stdClass()
+            ];
+
+            $this->expectException(\Exception::class);
+            CodeHelper::code($orders, $payments, true);
+        }
     }
