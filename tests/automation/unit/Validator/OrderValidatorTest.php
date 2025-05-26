@@ -13,4 +13,10 @@
             $items = [1, 2, 3];
             $this->assertTrue(OrderValidator::isWithinRange($items, 2));
         }
+
+        public function testNumberEqualToCountShouldReturnTrue()
+        {
+            $items = [1, 2, 3];
+            $this->assertTrue(OrderValidator::isWithinRange($items, 3));
+        }
     }
