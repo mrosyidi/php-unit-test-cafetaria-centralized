@@ -65,4 +65,16 @@
 
             $this->assertEquals(11, CodeHelper::code($orders, $payments, true));
         }
+
+        public function testCodeThrowsExceptionInvalidOrder()
+        {
+            $orders = [
+                new \stdClass()
+            ];
+
+            $payments = [];
+
+            $this->expectException(\Exception::class);
+            CodeHelper::code($orders, $payments, true);
+        }
     }

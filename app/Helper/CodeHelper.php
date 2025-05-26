@@ -2,10 +2,26 @@
 
     namespace Cafetaria\Helper;
 
-    class CodeHelper
+    class CodeHelper 
     {
-        public static function code(array $orders, array $payments, bool $exit): int
+        public static function code(array $orders, array $payments, bool $exit): int 
         {
+            foreach($orders as $order) 
+            {
+                if (!is_object($order) || !method_exists($order, 'getCode')) 
+                {
+                    throw new \Exception('Setiap objek order harus memiliki metode getCode.');
+                }
+            }
+
+            foreach($payments as $payment) 
+            {
+                if (!is_object($payment) || !method_exists($payment, 'getCode')) 
+                {
+                    throw new \Exception('Setiap objek payment harus memiliki metode getCode.');
+                }
+            }
+
             if(empty($orders) && empty($payments))
             {
                 $code = 1;
