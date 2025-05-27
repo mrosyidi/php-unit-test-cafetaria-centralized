@@ -5,6 +5,7 @@
     use Cafetaria\Service\DrinkService;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\Validator\DrinkValidator;
+    use Cafetaria\View\DrinkListRenderer;
 
     class DrinkView 
     {
@@ -19,22 +20,9 @@
         {
             while(true)
             {
-                echo "DAFTAR MINUMAN" . PHP_EOL;
-
                 $drinks = $this->drinkService->getAllDrink();
 
-
-                if(empty($drinks))
-                {
-                    echo "Tidak ada daftar minuman" . PHP_EOL;
-                }else
-                {
-                    foreach($drinks as $number => $drink)
-                    {
-                        $number++;
-                        echo "$number. " . $drink->getName() . "  Rp." . $drink->getPrice() . PHP_EOL;
-                    }
-                }
+                DrinkRenderer::render($drinks);
 
                 echo "Menu Minuman" . PHP_EOL;
                 echo "1. Tambah Minuman" . PHP_EOL;

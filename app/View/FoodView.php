@@ -5,6 +5,7 @@
     use Cafetaria\Service\FoodService;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\Validator\FoodValidator;
+    use Cafetaria\View\FoodListRenderer;
 
     class FoodView 
     {
@@ -19,22 +20,9 @@
         {
             while(true)
             {
-                echo "DAFTAR MAKANAN" . PHP_EOL;
-
                 $foods = $this->foodService->getAllFood();
 
-
-                if(empty($foods))
-                {
-                    echo "Tidak ada daftar makanan" . PHP_EOL;
-                }else
-                {
-                    foreach($foods as $number => $food)
-                    {
-                        $number++;
-                        echo "$number. " . $food->getName() . "  Rp." . $food->getPrice() . PHP_EOL;
-                    }
-                }
+                FoodRenderer::render($foods);
 
                 echo "Menu Makanan" . PHP_EOL;
                 echo "1. Tambah Makanan" . PHP_EOL;
