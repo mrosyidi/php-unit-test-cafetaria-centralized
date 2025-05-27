@@ -16,9 +16,15 @@
     {
         $connection = Database::getConnection();
 
+        $foodRepository = new FoodRepositoryImpl($connection);
+        $drinkRepository = new DrinkRepositoryImpl($connection);
         $orderRepository = new OrderRepositoryImpl($connection);
+
+        $foodService = new FoodServiceImpl($foodRepository);
+        $drinkService = new DrinkServiceImpl($drinkRepository);
         $orderService = new OrderServiceImpl($orderRepository);
-        $orderView = new OrderView($orderService);
+
+        $orderView = new OrderView($foodService, $drinkService, $orderService);
         $orderView->showOrder();
     }
 
@@ -38,4 +44,4 @@
         $orderView->addOrder(2,true);
     }
 
-    testViewAddOrder();
+    testViewShowOrder();
