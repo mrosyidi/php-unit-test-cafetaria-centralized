@@ -50,7 +50,9 @@
                     $open = false;
                 }else if($pilihan == "2")
                 {
-                    
+                    $exit = $open ? true : false;
+                    $this->addOrder(2, $exit);
+                    $open = false;
                 }else if($pilihan == "x")
                 {
                     break;
