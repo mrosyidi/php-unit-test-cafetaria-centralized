@@ -96,11 +96,21 @@
             $this->orderService->addOrder(1, "Es Campur", 12000, 1, 12000);
         }
 
-        public function testRemoveSuccess()
+        public function testRemoveOrderSuccess()
         {
             $this->orderRepository->expects($this->once())
             ->method('remove')->with(1);
 
+            $this->orderService->removeOrder(1);
+        }
+
+        public function testRemoveOrderThrowsException()
+        {
+            $this->orderRepository->expects($this->once())
+            ->method('remove')
+            ->willThrowException(new \PDOException("DB error"));
+
+            $this->expectException(\PDOException::class);
             $this->orderService->removeOrder(1);
         }
     }
