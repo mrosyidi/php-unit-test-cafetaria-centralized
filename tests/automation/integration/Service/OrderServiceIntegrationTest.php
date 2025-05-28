@@ -44,4 +44,18 @@
 
             $this->assertEmpty($orders);
         }
+
+        public function testAddOrderSuccess()
+        {
+            $this->orderService->addOrder(1, "Soto Daging", 12000, 1);
+
+            $orders = $this->orderService->getAllOrder();
+
+            $this->assertCount(1, $orders);
+            $this->assertEquals(1, $orders[0]->getCode());
+            $this->assertEquals("Soto Daging", $orders[0]->getName());
+            $this->assertEquals(12000, $orders[0]->getPrice());
+            $this->assertEquals(1, $orders[0]->getQty());
+            $this->assertEquals(12000, $orders[0]->getSubTotal());
+        }
     }
