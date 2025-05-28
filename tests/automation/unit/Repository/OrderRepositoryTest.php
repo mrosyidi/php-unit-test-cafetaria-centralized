@@ -134,4 +134,13 @@
 
             $this->orderRepository->remove(1);
         }
+
+        public function testRemoveAll()
+        {
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM orders")
+            ->willReturn($this->statement);
+
+            $this->orderRepository->removeAll();
+        }
     }
