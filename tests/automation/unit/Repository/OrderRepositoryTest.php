@@ -122,4 +122,16 @@
 
             $this->orderRepository->remove(1);
         }
+
+        public function testRemoveThrowsExceptionOnExecuteFailure()
+        {
+            $this->statement->method('execute')
+            ->willThrowException(new \PDOException("Execution failed"));
+
+            $this->pdo->method('prepare')->willReturn($this->statement);
+
+            $this->expectException(\PDOException::class);
+
+            $this->orderRepository->remove(1);
+        }
     }
