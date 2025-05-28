@@ -95,4 +95,12 @@
 
             $this->orderService->addOrder(1, "Es Campur", 12000, 1, 12000);
         }
+
+        public function testRemoveSuccess()
+        {
+            $this->orderRepository->expects($this->once())
+            ->method('remove')->with(1);
+
+            $this->orderService->removeOrder(1);
+        }
     }
