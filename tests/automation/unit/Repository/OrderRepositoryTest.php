@@ -112,4 +112,14 @@
 
             $this->orderRepository->remove(1);
         }
+
+        public function testRemoveThrowsExceptionOnPrepareFailure()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->method('prepare')
+            ->willThrowException(new \PDOException("Database error"));
+
+            $this->orderRepository->remove(1);
+        }
     }
