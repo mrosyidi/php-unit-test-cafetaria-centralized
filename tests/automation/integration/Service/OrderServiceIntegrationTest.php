@@ -74,4 +74,12 @@
 
             $this->orderService->addOrder(2, "Rawon", 12000, 0); 
         }
+
+        public function testAddOrderWithNegativeQtyThrowsException()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
+
+            $this->orderService->addOrder(2, "Ayam Goreng", 12000, -2); 
+        }
     }
