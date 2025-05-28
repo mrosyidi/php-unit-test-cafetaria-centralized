@@ -28,6 +28,6 @@
 
         public function removeOrder(int $code): void
         {
-
+            $this->orderRepository->remove($code);
         }
     }
