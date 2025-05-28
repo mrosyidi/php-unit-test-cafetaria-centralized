@@ -58,4 +58,12 @@
             $this->assertEquals(1, $orders[0]->getQty());
             $this->assertEquals(12000, $orders[0]->getSubTotal());
         }
+
+        public function testAddOrderWithNegativePriceThrowsException()
+        {
+            $this->expectException(InvalidOrderException::class);
+            $this->expectExceptionMessage("Harga tidak boleh negatif.");
+
+            $this->orderService->addOrder(1, "Gado-Gado", -12000, 2); 
+        }
     }
