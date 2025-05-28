@@ -37,4 +37,11 @@
             $this->assertEquals($order->getQty(), $orders[0]->getQty());
             $this->assertEquals(14000, $orders[0]->getSubTotal());
         }
+
+        public function testGetAllFoodWithNoData()
+        {
+            $orders = $this->orderService->getAllOrder();
+
+            $this->assertEmpty($orders);
+        }
     }
