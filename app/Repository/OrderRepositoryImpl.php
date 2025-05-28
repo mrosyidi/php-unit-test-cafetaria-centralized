@@ -45,7 +45,9 @@
 
         public function remove(int $code): void 
         {
-
+            $sql = "DELETE FROM orders WHERE code=?";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute([$code]);
         }
 
         public function removeAll(): void 
