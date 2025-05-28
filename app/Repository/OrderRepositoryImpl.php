@@ -52,6 +52,8 @@
 
         public function removeAll(): void 
         {
-
+            $sql = "DELETE FROM orders";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
         }
     }
