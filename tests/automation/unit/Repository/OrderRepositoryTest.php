@@ -100,4 +100,16 @@
 
             $this->orderRepository->save(new Order(1, "Soto Ayam", 10000, 2, 20000));
         }
+
+        public function testRemoveSuccess()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with([1]);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM orders WHERE code=?")
+            ->willReturn($this->statement);
+
+            $this->orderRepository->remove(1);
+        }
     }
