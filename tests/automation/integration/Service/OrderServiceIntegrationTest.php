@@ -82,4 +82,19 @@
 
             $this->orderService->addOrder(2, "Ayam Goreng", 12000, -2); 
         }
+
+        public function testRemoveOrderSuccess()
+        {
+            $this->orderService->addOrder(1, "Pastel", 5000, 2);
+            
+            $orders = $this->orderService->getAllOrder();
+            
+            $this->assertCount(1, $orders);
+
+            $this->orderService->removeOrder(1);
+
+            $orders = $this->orderService->getAllOrder();
+
+            $this->assertCount(0, $orders);
+        }
     }
