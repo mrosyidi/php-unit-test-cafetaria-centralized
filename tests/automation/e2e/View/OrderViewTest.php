@@ -78,4 +78,23 @@
             $this->assertStringContainsString("Tidak ada daftar pesanan", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
+
+        public function testShowOrderWhenOrderExists()
+        {
+            $this->foodService->addFood("Mie Ayam", 7000);
+            
+            $foods = $this->foodService->getAllFood();
+            
+            $this->orderService->addOrder(1, $foods[0]->getName(), $foods[0]->getPrice(), 1);
+
+            $output = $this->runCliApp([
+                "3",      
+                "x",           
+                "x"
+            ]);
+
+            $this->assertStringContainsString("DAFTAR PESANAN", $output);
+            $this->assertStringContainsString("1. 1 Mie Ayam Rp.7000 (x1) Rp.7000", $output);
+            $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
+        }
     }

@@ -51,7 +51,7 @@
             return $output;
         }
 
-        public function testShowDrinkWhenNoFoodExists()
+        public function testShowDrinkWhenNoDrinkExists()
         {
             $output = $this->runCliApp([
                 "2",      
@@ -63,7 +63,7 @@
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
 
-        public function testShowDrinkWhenFoodExists()
+        public function testShowDrinkWhenDrinkExists()
         {
             $this->drinkService->addDrink("Es Campur", 12000);
 
