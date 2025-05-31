@@ -193,4 +193,17 @@
 
             $this->assertStringContainsString("Gagal menambah pesanan, tidak ada makanan dengan nomor 3.", $output);
         }
+
+        public function testAddOrderDrinkWhenNoDrinkExists()
+        {
+            $output = $this->runCliApp([
+                "3",
+                "2",      
+                "2",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah pesanan, tidak ada minuman dengan nomor 2.", $output);
+        }
     }
