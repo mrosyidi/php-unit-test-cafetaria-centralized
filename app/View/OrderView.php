@@ -106,19 +106,25 @@
 
             if($qty == "x")
             {
-                echo "Batal menambah $order" . PHP_EOL;
+                echo "Batal menambah pesanan $order" . PHP_EOL;
                 return;
             }
             
             if(!is_numeric($qty))
             {
-                echo "Gagal menambah makanan, nomor $order harus bilangan" . PHP_EOL;
+                echo "Gagal menambah pesanan, nomor $order harus bilangan" . PHP_EOL;
+                return;
+            }
+
+            if (filter_var($qty, FILTER_VALIDATE_INT) === false) 
+            {
+                echo "Gagal menambah pesanan, jumlah pesanan $order harus bilangan bulat." . PHP_EOL;
                 return;
             }
             
             if($qty <= 0)
             {
-                echo "Gagal menambah makanan, jumlah $order minimal satu" . PHP_EOL;
+                echo "Gagal menambah pesanan, jumlah pesanan $order minimal satu" . PHP_EOL;
                 return;
             }
 
