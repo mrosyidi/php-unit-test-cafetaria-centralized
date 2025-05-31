@@ -167,4 +167,17 @@
 
             $this->assertStringContainsString("Gagal menambah pesanan, nomor makanan harus bilangan.", $output);
         }
+
+        public function testAddOrderDrinkWithEmptyNumberShouldFail()
+        {
+            $output = $this->runCliApp([
+                "3",
+                "2",      
+                "",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah pesanan, nomor minuman harus bilangan.", $output);
+        }
     }
