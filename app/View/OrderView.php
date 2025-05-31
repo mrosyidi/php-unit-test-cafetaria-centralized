@@ -86,19 +86,19 @@
 
             if($number == "x")
             {
-                echo "Batal menambah pesanan" . PHP_EOL;
+                echo "Batal menambah pesanan." . PHP_EOL;
                 return;
             }
             
             if(!is_numeric($number))
             {
-                echo "Gagal menambah pesanan, nomor $order harus bilangan" . PHP_EOL;
+                echo "Gagal menambah pesanan, nomor $order harus bilangan." . PHP_EOL;
                 return;
             }
             
             if(!OrderValidator::isWithinRange($items, $number))
             {
-                echo "Gagal menambah pesanan, tidak ada $order dengan nomor $number" . PHP_EOL;
+                echo "Gagal menambah pesanan, tidak ada $order dengan nomor $number." . PHP_EOL;
                 return;
             }
             
@@ -106,13 +106,13 @@
 
             if($qty == "x")
             {
-                echo "Batal menambah pesanan $order" . PHP_EOL;
+                echo "Batal menambah pesanan $order." . PHP_EOL;
                 return;
             }
             
             if(!is_numeric($qty))
             {
-                echo "Gagal menambah pesanan, nomor $order harus bilangan" . PHP_EOL;
+                echo "Gagal menambah pesanan, nomor $order harus bilangan." . PHP_EOL;
                 return;
             }
 
@@ -124,7 +124,7 @@
             
             if($qty <= 0)
             {
-                echo "Gagal menambah pesanan, jumlah pesanan $order minimal satu" . PHP_EOL;
+                echo "Gagal menambah pesanan, jumlah pesanan $order minimal satu." . PHP_EOL;
                 return;
             }
 
@@ -132,6 +132,6 @@
             $item = DataHelper::data($items, $number-1);
             $this->orderService->addOrder($code, $item["name"], $item["price"], $qty);
 
-            echo "Sukses menambah pesanan" . PHP_EOL;
+            echo "Sukses menambah pesanan." . PHP_EOL;
         }
     }

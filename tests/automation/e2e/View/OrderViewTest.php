@@ -120,11 +120,9 @@
         public function testShowOrderWhenOrderFoodAndDrinkExists()
         {
             $this->foodService->addFood("Mie Ayam", 7000);
-            
             $this->drinkService->addDrink("Es Oyen", 12000);
 
             $foods = $this->foodService->getAllFood();
-            
             $drinks = $this->drinkService->getAllDrink();
             
             $this->orderService->addOrder(1, $foods[0]->getName(), $foods[0]->getPrice(), 1);
@@ -155,5 +153,18 @@
             $this->assertStringContainsString("Tidak ada daftar pesanan", $output);
             $this->assertStringContainsString("Pilihan tidak dimengerti", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
+        }
+
+        public function testAddOrderFoodWithEmptyNumberShouldFail()
+        {
+            $output = $this->runCliApp([
+                "3",
+                "1",      
+                "",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah pesanan, nomor makanan harus bilangan.", $output);
         }
     }
