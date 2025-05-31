@@ -79,7 +79,7 @@
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
 
-        public function testShowOrderWhenOrderExists()
+        public function testShowOrderWhenOrderFoodExists()
         {
             $this->foodService->addFood("Mie Ayam", 7000);
             
@@ -95,6 +95,25 @@
 
             $this->assertStringContainsString("DAFTAR PESANAN", $output);
             $this->assertStringContainsString("1. 1 Mie Ayam Rp.7000 (x1) Rp.7000", $output);
+            $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
+        }
+
+        public function testShowOrderWhenOrderDrinkExists()
+        {
+            $this->drinkService->addDrink("Es Oyen", 12000);
+            
+            $drinks = $this->drinkService->getAllDrink();
+            
+            $this->orderService->addOrder(1, $drinks[0]->getName(), $drinks[0]->getPrice(), 2);
+
+            $output = $this->runCliApp([
+                "3",      
+                "x",           
+                "x"
+            ]);
+
+            $this->assertStringContainsString("DAFTAR PESANAN", $output);
+            $this->assertStringContainsString("1. 1 Es Oyen Rp.12000 (x2) Rp.24000", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
 
