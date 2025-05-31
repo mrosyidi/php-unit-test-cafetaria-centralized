@@ -180,4 +180,17 @@
 
             $this->assertStringContainsString("Gagal menambah pesanan, nomor minuman harus bilangan.", $output);
         }
+
+        public function testAddOrderFoodWhenNoFoodExists()
+        {
+            $output = $this->runCliApp([
+                "3",
+                "1",      
+                "3",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal menambah pesanan, tidak ada makanan dengan nomor 3.", $output);
+        }
     }
