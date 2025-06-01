@@ -254,4 +254,26 @@
             $this->assertStringContainsString("1. Mie Ayam  Rp.7000", $output);
             $this->assertStringContainsString("Batal menambah pesanan makanan.", $output);
         }
+
+        public function testAddOrderWithQtyIsXShouldCancelAfterAddDrink()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",
+                "Es Campur",
+                "12000",
+                "x",
+                "3",
+                "2",  
+                "1",    
+                "x",           
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah minuman.", $output);
+            $this->assertStringContainsString("1. Es Campur  Rp.12000", $output);
+            $this->assertStringContainsString("Batal menambah pesanan minuman.", $output);
+        }
     }
