@@ -520,7 +520,7 @@
             $this->assertStringContainsString("1. 1 Ayam Goreng Rp.12000 (x2) Rp.24000", $output);
         }
 
-        public function testAddOrderSuccessAddDrink()
+        public function testAddOrderSuccessAfterAddDrink()
         {
             $output = $this->runCliApp([
                 "2",
@@ -541,5 +541,37 @@
             $this->assertStringContainsString("1. Es Kelapa Muda  Rp.8000", $output);
             $this->assertStringContainsString("Sukses menambah pesanan.", $output);
             $this->assertStringContainsString("1. 1 Es Kelapa Muda Rp.8000 (x2) Rp.16000", $output);
+        }
+
+        public function testAddOrderSuccessWithoutExist()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Soto Ayam",
+                "10000",
+                "x",
+
+                "2",
+                "1",
+                "Es Campur",
+                "12000",
+                "x",
+
+                "3",
+                "1",
+                "1",
+                "2",
+
+                "2",  
+                "1",    
+                "2",
+
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("1. 1 Soto Ayam Rp.10000 (x2) Rp.20000", $output);
+            $this->assertStringContainsString("2. 1 Es Campur Rp.12000 (x2) Rp.24000", $output);
         }
     }
