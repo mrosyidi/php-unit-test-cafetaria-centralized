@@ -386,4 +386,26 @@
             $this->assertStringContainsString("1. Pastel  Rp.5000", $output);
             $this->assertStringContainsString("Gagal menambah pesanan, jumlah pesanan makanan harus bilangan bulat.", $output);
         }
+
+        public function testAddOrderWithDecimalQtyShouldFailAfterAddDrink()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",
+                "Jus Wortel",
+                "6000",
+                "x",
+                "3",
+                "2",  
+                "1",    
+                "3.45",           
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah minuman.", $output);
+            $this->assertStringContainsString("1. Jus Wortel  Rp.6000", $output);
+            $this->assertStringContainsString("Gagal menambah pesanan, jumlah pesanan minuman harus bilangan bulat.", $output);
+        }
     }
