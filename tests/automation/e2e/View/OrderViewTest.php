@@ -496,4 +496,27 @@
             $this->assertStringContainsString("1. Jus Melon  Rp.8000", $output);
             $this->assertStringContainsString("Gagal menambah pesanan, jumlah pesanan minuman minimal satu.", $output);
         }
+
+        public function testAddOrderSuccessAfterAddFood()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Ayam Goreng",
+                "12000",
+                "x",
+                "3",
+                "1",  
+                "1",    
+                "2",           
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah makanan.", $output);
+            $this->assertStringContainsString("1. Ayam Goreng  Rp.12000", $output);
+            $this->assertStringContainsString("Sukses menambah pesanan.", $output);
+            $this->assertStringContainsString("1. 1 Ayam Goreng Rp.12000 (x2) Rp.24000", $output);
+        }
     }
