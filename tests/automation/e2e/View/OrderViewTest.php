@@ -474,4 +474,26 @@
             $this->assertStringContainsString("1. Ayam Goreng  Rp.12000", $output);
             $this->assertStringContainsString("Gagal menambah pesanan, jumlah pesanan makanan minimal satu.", $output);
         }
+
+        public function testAddOrderWithNegativeQtyShouldFailAfterAddDrink()
+        {
+            $output = $this->runCliApp([
+                "2",
+                "1",
+                "Jus Melon",
+                "8000",
+                "x",
+                "3",
+                "2",  
+                "1",    
+                "-3",           
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Sukses menambah minuman.", $output);
+            $this->assertStringContainsString("1. Jus Melon  Rp.8000", $output);
+            $this->assertStringContainsString("Gagal menambah pesanan, jumlah pesanan minuman minimal satu.", $output);
+        }
     }
