@@ -112,7 +112,7 @@
             
             if(!is_numeric($qty))
             {
-                echo "Gagal menambah pesanan, nomor $order harus bilangan." . PHP_EOL;
+                echo "Gagal menambah pesanan, jumlah pesanan $order harus bilangan." . PHP_EOL;
                 return;
             }
 
