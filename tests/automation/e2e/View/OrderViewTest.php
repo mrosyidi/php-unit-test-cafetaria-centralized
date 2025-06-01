@@ -207,11 +207,24 @@
             $this->assertStringContainsString("Gagal menambah pesanan, tidak ada minuman dengan nomor 2.", $output);
         }
 
-        public function testAddOrderFoodWhenNameIsXShouldCancel()
+        public function testAddOrderFoodWhenNumberIsXShouldCancel()
         {
             $output = $this->runCliApp([
                 "3",
                 "1",      
+                "x",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Batal menambah pesanan.", $output);
+        }
+
+        public function testAddOrderDrinkWhenNumberIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "3",
+                "2",      
                 "x",           
                 "x",
                 "x"
