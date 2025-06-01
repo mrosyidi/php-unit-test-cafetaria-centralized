@@ -574,4 +574,47 @@
             $this->assertStringContainsString("1. 1 Soto Ayam Rp.10000 (x2) Rp.20000", $output);
             $this->assertStringContainsString("2. 1 Es Campur Rp.12000 (x2) Rp.24000", $output);
         }
+
+        public function testAddOrderSuccessWithExist()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Soto Ayam",
+                "10000",
+                "x",
+
+                "2",
+                "1",
+                "Es Campur",
+                "12000",
+
+                "1",
+                "Es Oyen",
+                "12000",
+                "x",
+
+                "3",
+                "1",
+                "1",
+                "2",
+
+                "2",  
+                "1",    
+                "2",
+                "x",
+
+                "3",
+                "2",
+                "2",
+                "1",
+
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("1. 1 Soto Ayam Rp.10000 (x2) Rp.20000", $output);
+            $this->assertStringContainsString("2. 1 Es Campur Rp.12000 (x2) Rp.24000", $output);
+            $this->assertStringContainsString("3. 2 Es Oyen Rp.12000 (x1) Rp.12000", $output);
+        }
     }
