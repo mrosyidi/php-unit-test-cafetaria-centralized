@@ -32,4 +32,12 @@
 
             new Payment(1, 48000, -100000);
         }
+
+        public function testConstructWhenTotalGreaterThanPay()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Jumlah bayar kurang dari total.");
+
+            new Payment(1, 68000, 50000);
+        }
     }
