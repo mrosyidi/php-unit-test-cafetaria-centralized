@@ -24,4 +24,12 @@
 
             new Payment(1, -48000, 100000);
         }
+
+        public function testContructorWithNegativePay()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Jumlah bayar tidak boleh negatif.");
+
+            new Payment(1, 48000, -100000);
+        }
     }
