@@ -2,7 +2,7 @@
 
     namespace Cafetaria\Entity;
 
-    use Cafetaria\InvalidPaymentException;
+    use Cafetaria\Exception\InvalidPaymentException;
 
     class Payment 
     {
