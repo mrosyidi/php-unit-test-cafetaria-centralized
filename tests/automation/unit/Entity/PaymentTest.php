@@ -57,4 +57,12 @@
             $payment = new Payment();
             $payment->setTotal(-52000);
         }
+
+        public function testSetPayUpdateChange()
+        {
+            $payment = new Payment(3, 36000, 50000);
+            $payment->setPay(100000);
+            $this->assertEquals(100000, $payment->getPay());
+            $this->assertEquals(64000, $payment->getChange());
+        }
     }

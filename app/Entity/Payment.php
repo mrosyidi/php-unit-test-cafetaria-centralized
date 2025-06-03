@@ -67,7 +67,7 @@
                 throw new InvalidPaymentException("Jumlah bayar tidak boleh negatif.");
             }
 
-            if($pay < $total)
+            if($pay < $this->total)
             {
                 throw new InvalidPaymentException("Jumlah bayar kurang dari total.");
             }
