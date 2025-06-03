@@ -40,4 +40,12 @@
 
             new Payment(1, 68000, 50000);
         }
+
+        public function testSetTotalUpdateChange()
+        {
+            $payment = new Payment(2, 48000, 100000);
+            $payment->setTotal(64000);
+            $this->assertEquals(64000, $payment->getTotal());
+            $this->assertEquals(36000, $payment->getChange());
+        }
     }
