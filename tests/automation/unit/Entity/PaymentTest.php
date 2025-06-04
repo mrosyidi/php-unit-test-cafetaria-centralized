@@ -65,4 +65,13 @@
             $this->assertEquals(100000, $payment->getPay());
             $this->assertEquals(64000, $payment->getChange());
         }
+
+        public function testSetPayWithNegativeThrowsException()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Jumlah bayar tidak boleh negatif.");
+
+            $payment = new Payment(2, 34000, 100000);
+            $payment->setPay(-50000);
+        }
     }
