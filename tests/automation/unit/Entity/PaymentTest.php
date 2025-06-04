@@ -74,4 +74,13 @@
             $payment = new Payment(2, 34000, 100000);
             $payment->setPay(-50000);
         }
+
+        public function testSetPayLowerThanTotalThrowsException()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Jumlah bayar kurang dari total.");
+
+            $payment = new Payment(2, 64000, 100000);
+            $payment->setPay(50000);
+        }
     }
