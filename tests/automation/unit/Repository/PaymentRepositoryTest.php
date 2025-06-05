@@ -48,4 +48,13 @@
 
             $this->assertCount(0, $payments);
         }
+
+        public function testFindAllWithQueryFailure()
+        {
+            $this->statement->method('execute')->willReturn(false);
+
+            $payments = $this->paymentRepository->findAll();
+
+            $this->assertCount(0, $payments);
+        }
     }
