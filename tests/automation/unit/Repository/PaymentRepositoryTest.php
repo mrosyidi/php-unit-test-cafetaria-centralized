@@ -81,4 +81,20 @@
 
             $this->paymentRepository->save(new Payment(1, 72000, 100000, 28000));
         }
+
+        public function testSaveExecuteFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->with("INSERT INTO payments(code,total,pay,changes) VALUES(?,?,?,?)")
+            ->willReturn($this->statement);
+
+            $this->statement->expects($this->once())
+            ->method('execute')
+            ->will($this->throwException(new \PDOException("Execution failed")));
+
+            $this->paymentRepository->save(new Payment(1, 80000, 100000, 20000));
+        }
     }
