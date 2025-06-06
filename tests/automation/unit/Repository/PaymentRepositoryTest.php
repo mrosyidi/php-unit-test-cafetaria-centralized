@@ -57,4 +57,17 @@
 
             $this->assertCount(0, $payments);
         }
+
+        public function testSaveSuccess()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with([1, 68000, 100000, 32000]);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->with("INSERT INTO payments(code,total,pay,changes) VALUES(?,?,?,?)")
+            ->willReturn($this->statement);
+
+            $this->paymentRepository->save(new Payment(1, 68000, 100000, 32000));
+        }
     }
