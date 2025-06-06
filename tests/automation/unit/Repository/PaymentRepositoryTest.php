@@ -70,4 +70,15 @@
 
             $this->paymentRepository->save(new Payment(1, 68000, 100000, 32000));
         }
+
+        public function testSavePrepareFails()
+        {
+            $this->expectException(\PDOException::class);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->paymentRepository->save(new Payment(1, 72000, 100000, 28000));
+        }
     }
