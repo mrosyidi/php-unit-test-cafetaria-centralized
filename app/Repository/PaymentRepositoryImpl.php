@@ -36,7 +36,9 @@
 
         public function save(Payment $payment): void 
         {
-            
+            $sql = "INSERT INTO payments(code,total,pay,changes) VALUES(?,?,?,?)";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute([$payment->getCode(),$payment->getTotal(),$payment->getPay(),$payment->getChange()]);
         }
 
         public function removeAll(): void
