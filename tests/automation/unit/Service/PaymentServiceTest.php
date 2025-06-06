@@ -46,4 +46,13 @@
             $this->assertEquals(100000, $payments[0]->getPay());
             $this->assertEquals(32000, $payments[0]->getChange());
         }
+
+        public function testGetAllPaymentWhenNoDataExist()
+        {
+            $this->paymentRepository->method('findAll')->willReturn([]);
+
+            $payments = $this->paymentService->getAllPayment();
+
+            $this->assertCount(0, $payments);
+        }
     }
