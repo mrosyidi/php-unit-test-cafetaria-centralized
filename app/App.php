@@ -14,6 +14,7 @@
     use Cafetaria\View\FoodView;
     use Cafetaria\View\DrinkView;
     use Cafetaria\View\OrderView;
+    use Cafetaria\View\PaymentView;
     use Cafetaria\Helper\InputHelper;
 
     $connection = Database::getConnection();
@@ -31,6 +32,7 @@
     $foodView = new FoodView($foodService);
     $drinkView = new DrinkView($drinkService);
     $orderView = new OrderView($foodService, $drinkService, $orderService);
+    $paymentView = new PaymentView($orderService, $paymentService);
     
     echo "Cafetaria App" . PHP_EOL;
 
