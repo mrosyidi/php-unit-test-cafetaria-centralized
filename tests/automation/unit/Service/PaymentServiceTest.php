@@ -81,4 +81,15 @@
             $this->expectexception(InvalidPaymentException::class);
             $this->paymentService->addPayment(1, 72000, 50000, 28000);
         }
+
+        public function testAddPaymentSaveFailsThrowsException()
+        {
+            $this->paymentRepository->expects($this->once())
+            ->method('save')
+            ->will($this->throwException(new \PDOException("Database error")));
+
+            $this->expectException(\PDOException::class);
+
+            $this->paymentService->addPayment(1, 65000, 100000, 45000);
+        }
     }
