@@ -63,4 +63,10 @@
 
             $this->paymentService->addPayment(1, 68000, 100000, 32000);
         }
+
+        public function testAddPaymentWithNegativeTotalThrowsException()
+        {
+            $this->expectexception(InvalidPaymentException::class);
+            $this->paymentService->addPayment(1, -52000, 100000, 48000);
+        }
     }
