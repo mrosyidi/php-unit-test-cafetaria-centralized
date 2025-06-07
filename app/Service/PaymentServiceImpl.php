@@ -19,13 +19,9 @@
             return $this->paymentRepository->findAll();
         }
 
-        public function showPayment(): void
-        {
-
-        }
-
         public function addPayment(int $code, int $total, int $pay): void
         {
-            
+            $payment = new Payment($code, $total, $pay);
+            $this->paymentRepository->save($payment);
         }
     }
