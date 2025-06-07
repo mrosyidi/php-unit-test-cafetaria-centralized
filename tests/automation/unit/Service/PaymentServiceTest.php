@@ -55,4 +55,12 @@
 
             $this->assertCount(0, $payments);
         }
+
+        public function testAddPaymentSuccess()
+        {
+            $this->paymentRepository->expects($this->once())
+            ->method('save')->with(new Payment(1, 68000, 100000, 32000));
+
+            $this->paymentService->addPayment(1, 68000, 100000, 32000);
+        }
     }
