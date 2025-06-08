@@ -43,4 +43,14 @@
             
             PaymentValidator::isCodeInItems($items, 1);
         }
+
+        public function testIsCodeInItemsThrowsExceptionItemNotObject()
+        {
+            $items = ["Bukan objek"];
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Item pada index 0 bukan objek.');
+
+            PaymentValidator::isCodeInItems($items, 1);
+        }
     }
