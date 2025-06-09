@@ -48,4 +48,14 @@
 
             DuplicateHelper::duplicate($orders, 1);
         }
+
+        public function testDuplicateThrowsExceptionIfMissingGetCodeMethod()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Setiap objek order harus memiliki metode getCode().');
+
+            $orders = [new \stdClass()];
+
+            DuplicateHelper::duplicate($orders, 1);
+        }
     }
