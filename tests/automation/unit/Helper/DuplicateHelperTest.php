@@ -38,4 +38,14 @@
 
             $this->assertEmpty($result);
         }
+
+        public function testDuplicateThrowsExceptionIfItemNotObject()
+        {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Semua item order harus berupa objek.');
+
+            $orders = ["Bukan objek"];
+
+            DuplicateHelper::duplicate($orders, 1);
+        }
     }
