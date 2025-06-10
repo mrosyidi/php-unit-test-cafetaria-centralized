@@ -36,7 +36,7 @@
 
                 if($pilihan == "1")
                 {
-
+                    $this->addPayment();
                 }else if($pilihan == "x")
                 {
                     break;
