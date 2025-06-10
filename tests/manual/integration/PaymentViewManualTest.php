@@ -24,4 +24,18 @@
         $paymentView->showPayment();
     }
 
-    testViewShowPayment();
+    function testViewAddPayment()
+    {
+        $connection = Database::getConnection();
+
+        $orderRepository = new OrderRepositoryImpl($connection);
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+
+        $orderService = new OrderServiceImpl($orderRepository);
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+
+        $paymentView = new PaymentView($orderService, $paymentService);
+        $paymentView->addPayment();
+    }
+
+    testViewAddPayment();
