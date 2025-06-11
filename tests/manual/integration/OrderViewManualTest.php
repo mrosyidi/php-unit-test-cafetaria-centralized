@@ -51,4 +51,4 @@
         $orderView->addOrder(2,true);
     }
 
-    testViewShowOrder();
+    testViewAddOrder();
