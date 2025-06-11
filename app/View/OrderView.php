@@ -5,6 +5,7 @@
     use Cafetaria\Service\FoodService;
     use Cafetaria\Service\DrinkService;
     use Cafetaria\Service\OrderService;
+    use Cafetaria\Service\PaymentService;
     use Cafetaria\Helper\CodeHelper;
     use Cafetaria\Helper\DataHelper;
     use Cafetaria\Helper\InputHelper;
@@ -19,11 +20,12 @@
         private DrinkService $drinkService;
         private OrderService $orderService;
 
-        public function __construct(FoodService $foodService, DrinkService $drinkService, OrderService $orderService)
+        public function __construct(FoodService $foodService, DrinkService $drinkService, OrderService $orderService, PaymentService $paymentService)
         {
             $this->foodService = $foodService;
             $this->drinkService = $drinkService;
             $this->orderService = $orderService;
+            $this->paymentService = $paymentService;
         }
 
         public function showOrder(): void 
@@ -66,7 +68,7 @@
         public function addOrder(int $numberOrder, bool $exit): void 
         {
             $orders = $this->orderService->getAllOrder();
-            $payments = [];
+            $payments = $this->paymentService->getAllPayment();
 
             if($numberOrder == 1)
             {
