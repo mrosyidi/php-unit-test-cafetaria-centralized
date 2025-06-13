@@ -64,4 +64,12 @@
 
             $this->paymentService->addPayment(1, -28000, 50000, 22000); 
         }
+
+        public function testAddPaymentWithNegativePayThrowsException()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Jumlah bayar tidak boleh negatif.");
+
+            $this->paymentService->addPayment(1, 28000, -50000, 22000); 
+        }
     }
