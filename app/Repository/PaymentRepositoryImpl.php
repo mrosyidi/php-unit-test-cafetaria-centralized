@@ -43,6 +43,8 @@
 
         public function removeAll(): void
         {
-
+            $sql = "DELETE FROM payments";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
         }
     }
