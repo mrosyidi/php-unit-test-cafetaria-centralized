@@ -36,4 +36,11 @@
             $this->assertEquals($payment->getPay(), $payments[0]->getPay());
             $this->assertEquals($payment->getChange(), $payments[0]->getChange());
         }
+
+        public function testGetAllPaymentWithNoData()
+        {
+            $payments = $this->paymentService->getAllPayment();
+
+            $this->assertEmpty($payments);
+        }
     }
