@@ -72,4 +72,12 @@
 
             $this->paymentService->addPayment(1, 28000, -50000, 22000); 
         }
+
+        public function testAddPaymentWithTotalGreaterThanPayThrowsException()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Jumlah bayar kurang dari total.");
+
+            $this->paymentService->addPayment(1, 64000, 50000, 36000); 
+        }
     }
