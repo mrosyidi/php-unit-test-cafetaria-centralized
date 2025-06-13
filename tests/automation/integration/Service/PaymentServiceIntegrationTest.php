@@ -43,4 +43,17 @@
 
             $this->assertEmpty($payments);
         }
+
+        public function testAddPaymentSuccess()
+        {
+            $this->paymentService->addPayment(1, 32000, 50000, 18000);
+
+            $payments = $this->paymentService->getAllPayment();
+
+            $this->assertCount(1, $payments);
+            $this->assertEquals(1, $payments[0]->getCode());
+            $this->assertEquals(32000, $payments[0]->getTotal());
+            $this->assertEquals(50000, $payments[0]->getPay());
+            $this->assertEquals(18000, $payments[0]->getChange());
+        }
     }
