@@ -5,6 +5,7 @@
     use Cafetaria\Repository\FoodRepositoryImpl;
     use Cafetaria\Repository\DrinkRepositoryImpl;
     use Cafetaria\Repository\OrderRepositoryImpl;
+    use Cafetaria\Repository\PaymentRepositoryImpl;
     use Cafetaria\Service\FoodServiceImpl;
     use Cafetaria\Service\DrinkServiceImpl;
     use Cafetaria\Service\OrderServiceImpl;
@@ -15,6 +16,7 @@
         private FoodRepositoryImpl $foodRepository;
         private DrinkRepositoryImpl $drinkRepository;
         private OrderRepositoryImpl $orderRepository;
+        private PaymentRepositoryImpl $paymentRepository;
         private FoodServiceImpl $foodService;
         private DrinkServiceImpl $drinkService;
         private OrderServiceImpl $orderService;
@@ -28,6 +30,7 @@
             $this->foodRepository = new FoodRepositoryImpl($connection);
             $this->drinkRepository = new DrinkRepositoryImpl($connection);
             $this->orderRepository = new OrderRepositoryImpl($connection);
+            $this->paymentRepository = new PaymentRepositoryImpl($connection);
 
             $this->foodService = new FoodServiceImpl($this->foodRepository);
             $this->drinkService = new DrinkServiceImpl($this->drinkRepository);
@@ -36,6 +39,7 @@
             $this->orderRepository->removeAll();
             $this->foodRepository->removeAll();
             $this->drinkRepository->removeAll();
+            $this->paymentRepository->removeAll();
         }
 
         public function runCliApp(array $inputs): string

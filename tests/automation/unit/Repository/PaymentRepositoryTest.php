@@ -97,4 +97,13 @@
 
             $this->paymentRepository->save(new Payment(1, 80000, 100000, 20000));
         }
+
+        public function testRemoveAll()
+        {
+            $this->pdo->expects($this->once())
+            ->method('prepare')->with("DELETE FROM payments")
+            ->willReturn($this->statement);
+
+            $this->paymentRepository->removeAll();
+        }
     }
