@@ -31,7 +31,7 @@
 
     $foodView = new FoodView($foodService);
     $drinkView = new DrinkView($drinkService);
-    $orderView = new OrderView($foodService, $drinkService, $orderService);
+    $orderView = new OrderView($foodService, $drinkService, $orderService, $paymentService);
     $paymentView = new PaymentView($orderService, $paymentService);
     
     echo "Cafetaria App" . PHP_EOL;
@@ -59,7 +59,7 @@
             $orderView->showOrder();
         }else if($pilihan == "4")
         {
-            
+            $paymentView->showPayment();
         }else if($pilihan == "5")
         {
             
