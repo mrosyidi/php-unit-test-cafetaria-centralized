@@ -56,4 +56,12 @@
             $this->assertEquals(50000, $payments[0]->getPay());
             $this->assertEquals(18000, $payments[0]->getChange());
         }
+
+        public function testAddPaymentWithNegativeTotalThrowsException()
+        {
+            $this->expectException(InvalidPaymentException::class);
+            $this->expectExceptionMessage("Total tidak boleh negatif.");
+
+            $this->paymentService->addPayment(1, -28000, 50000, 22000); 
+        }
     }
