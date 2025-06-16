@@ -144,4 +144,17 @@
 
             $this->assertStringContainsString("Gagal memproses pesanan, kode pesanan harus bilangan.", $output);
         }
+
+        public function testAddPaymentWhenNoOrderExists()
+        {
+            $output = $this->runCliApp([
+                "4",
+                "1",
+                "2",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal memproses pesanan, tidak ada item yang dipesan.", $output);
+        }
     }
