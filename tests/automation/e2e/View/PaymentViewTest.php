@@ -314,4 +314,51 @@
 
             $this->assertStringContainsString("Gagal memproses pesanan, jumlah uang yang digunakan tidak cukup.", $output);
         }
+
+        public function testAddPaymentSuccess()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Ayam Goreng",
+                "12000",
+                "1",
+                "Rawon",
+                "12000",
+                "x",
+
+                "2",
+                "1",
+                "Es Oyen",
+                "12000",
+                "1",
+                "Es Campur",
+                "12000",
+                "x",
+
+                "3",
+                "1",
+                "1",
+                "1",
+
+                "1",
+                "2",
+                "1",
+
+                "2",
+                "1",
+                "2",
+
+                "x",
+                "4",
+                "1",
+                "1",
+                "100000",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Kembalian : Rp.52000", $output);
+            $this->assertStringContainsString("Sukses memproses pesanan.", $output);
+        }
     }

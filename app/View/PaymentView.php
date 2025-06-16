@@ -110,5 +110,6 @@
             $this->orderService->removeOrder($code);
             
             echo "Kembalian : Rp." . $change . PHP_EOL;
+            echo "Sukses memproses pesanan." . PHP_EOL;
         }
     }
