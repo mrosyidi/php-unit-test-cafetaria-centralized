@@ -157,4 +157,17 @@
 
             $this->assertStringContainsString("Gagal memproses pesanan, tidak ada item yang dipesan.", $output);
         }
+
+        public function testAddPaymentWhenCodeIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "4",
+                "1",      
+                "x",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Batal memproses pesanan.", $output);
+        }
     }
