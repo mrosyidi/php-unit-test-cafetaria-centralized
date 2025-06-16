@@ -193,4 +193,29 @@
 
             $this->assertStringContainsString("Gagal memproses pesanan, kode pesanan tidak ditemukan.", $output);
         }
+
+        public function testAddPaymentWithPayIsXShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Rawon",
+                "12000",
+                "x",
+                "3",
+                "1",
+                "1",
+                "1",
+                "x",
+                "4",
+                "1",
+                "1",
+                "x",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Total yang harus dibayar : Rp.12000", $output);
+            $this->assertStringContainsString("Batal memproses pesanan.", $output);
+        }
     }
