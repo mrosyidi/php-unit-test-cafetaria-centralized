@@ -268,4 +268,50 @@
             $this->assertStringContainsString("Total yang harus dibayar : Rp.5000", $output);
             $this->assertStringContainsString("Gagal memproses pesanan, jumlah uang harus bilangan.", $output);
         }
+
+        public function testAddPaymentWithTotalGreaterThanPayShouldFail()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Ayam Goreng",
+                "12000",
+                "1",
+                "Rawon",
+                "12000",
+                "x",
+
+                "2",
+                "1",
+                "Es Oyen",
+                "12000",
+                "1",
+                "Es Campur",
+                "12000",
+                "x",
+
+                "3",
+                "1",
+                "1",
+                "1",
+
+                "1",
+                "2",
+                "1",
+
+                "2",
+                "1",
+                "2",
+
+                "x",
+                "4",
+                "1",
+                "1",
+                "20000",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal memproses pesanan, jumlah uang yang digunakan tidak cukup.", $output);
+        }
     }
