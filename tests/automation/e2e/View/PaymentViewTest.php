@@ -243,4 +243,29 @@
             $this->assertStringContainsString("Total yang harus dibayar : Rp.5000", $output);
             $this->assertStringContainsString("Gagal memproses pesanan, jumlah uang harus bilangan.", $output);
         }
+
+        public function testAddPaymentWithInvalidPayShouldCancel()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Pastel",
+                "5000",
+                "x",
+                "3",
+                "1",
+                "1",
+                "1",
+                "x",
+                "4",
+                "1",
+                "1",
+                "fffff",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Total yang harus dibayar : Rp.5000", $output);
+            $this->assertStringContainsString("Gagal memproses pesanan, jumlah uang harus bilangan.", $output);
+        }
     }
