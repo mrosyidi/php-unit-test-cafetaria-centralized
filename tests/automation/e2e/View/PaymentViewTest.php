@@ -131,4 +131,17 @@
             $this->assertStringContainsString("Pilihan tidak dimengerti", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
+
+        public function testAddPaymentWithEmptyCodeShouldFail()
+        {
+            $output = $this->runCliApp([
+                "4",
+                "1",      
+                "",           
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Gagal memproses pesanan, kode pesanan harus bilangan.", $output);
+        }
     }
