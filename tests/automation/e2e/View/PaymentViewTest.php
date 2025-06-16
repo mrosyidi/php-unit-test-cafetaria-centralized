@@ -218,4 +218,29 @@
             $this->assertStringContainsString("Total yang harus dibayar : Rp.12000", $output);
             $this->assertStringContainsString("Batal memproses pesanan.", $output);
         }
+
+        public function testAddPaymentWithEmptyPayShouldFail()
+        {
+            $output = $this->runCliApp([
+                "1",
+                "1",
+                "Pastel",
+                "5000",
+                "x",
+                "3",
+                "1",
+                "1",
+                "1",
+                "x",
+                "4",
+                "1",
+                "1",
+                "",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Total yang harus dibayar : Rp.5000", $output);
+            $this->assertStringContainsString("Gagal memproses pesanan, jumlah uang harus bilangan.", $output);
+        }
     }
