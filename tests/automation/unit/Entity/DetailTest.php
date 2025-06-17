@@ -47,4 +47,13 @@
             $this->assertEquals(3, $detail->getQty());
             $this->assertEquals(36000, $detail->getSubTotal());
         }
+
+        public function testSetPriceThrowsExceptionWhenNegative()
+        {
+            $this->expectException(InvalidDetailException::class);
+            $this->expectExceptionMessage("Harga tidak boleh negatif.");
+
+            $detail = new Detail();
+            $detail->setPrice(-10000);
+        }
     }
