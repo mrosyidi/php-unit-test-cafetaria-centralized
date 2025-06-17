@@ -56,4 +56,13 @@
             $detail = new Detail();
             $detail->setPrice(-10000);
         }
+
+        public function testSetQtyThrowsExceptionWhenZero()
+        {
+            $this->expectException(InvalidDetailException::class);
+            $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
+
+            $detail = new Detail();
+            $detail->setQty(0);
+        }  
     }
