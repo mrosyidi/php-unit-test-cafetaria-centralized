@@ -31,4 +31,12 @@
             $this->assertNull($detail->getQty());
             $this->assertNull($detail->getSubTotal());
         }
+
+        public function testSetPriceUpdatesSubTotal()
+        {
+            $detail = new Detail(1, "Es Campur", 12000, 1);
+            $detail->setPrice(15000);
+            $this->assertEquals(15000, $detail->getPrice());
+            $this->assertEquals(15000, $detail->getSubTotal());
+        }
     }
