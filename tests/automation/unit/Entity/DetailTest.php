@@ -17,4 +17,11 @@
             $this->assertEquals(2, $detail->getQty());
             $this->assertEquals(24000, $detail->getSubTotal());
         }
+
+        public function testConstructWithNullPriceSetsSubTotalToNull()
+        {
+            $detail = new Detail(1, "Mie Ayam", null, 2);
+            $this->assertNull($detail->getPrice());
+            $this->assertNull($detail->getSubTotal());
+        }
     }
