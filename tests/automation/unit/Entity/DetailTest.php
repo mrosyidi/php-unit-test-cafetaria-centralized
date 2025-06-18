@@ -68,10 +68,10 @@
 
         public function testSetQtyThrowsExceptionWhenNegative()
         {
-            $this->expectException(InvalidOrderException::class);
+            $this->expectException(InvalidDetailException::class);
             $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
 
-            $order = new Order();
-            $order->setQty(-2);
+            $detail = new Detail();
+            $detail->setQty(-2);
         }
     }
