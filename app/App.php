@@ -7,6 +7,7 @@
     use Cafetaria\Repository\DrinkRepositoryImpl;
     use Cafetaria\Repository\OrderRepositoryImpl;
     use Cafetaria\Repository\PaymentRepositoryImpl;
+    use Cafetaria\Repository\DetailRepositoryImpl;
     use Cafetaria\Service\FoodServiceImpl;
     use Cafetaria\Service\DrinkServiceImpl;
     use Cafetaria\Service\OrderServiceImpl;
@@ -23,6 +24,7 @@
     $drinkRepository = new DrinkRepositoryImpl($connection);
     $orderRepository = new OrderRepositoryImpl($connection);
     $paymentRepository = new PaymentRepositoryImpl($connection);
+    $detailRepository = new DetailRepositoryImpl($connection);
 
     $foodService = new FoodServiceImpl($foodRepository);
     $drinkService = new DrinkServiceImpl($drinkRepository);
