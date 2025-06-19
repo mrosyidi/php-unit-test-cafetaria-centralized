@@ -41,4 +41,14 @@
             $this->assertEquals(2, $details[0]->getQty());
             $this->assertEquals(20000, $details[0]->getSubTotal());
         }
+
+        public function testFindAllWithNoData()
+        {
+            $this->statement->method('execute')->willReturn(true);
+            $this->statement->method('fetchAll')->willReturn([]);
+
+            $details = $this->detailRepository->findAll();
+
+            $this->assertCount(0, $details);
+        }
     }
