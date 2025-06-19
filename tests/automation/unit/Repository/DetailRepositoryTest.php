@@ -51,4 +51,13 @@
 
             $this->assertCount(0, $details);
         }
+
+        public function testFindAllWithQueryFailure()
+        {
+            $this->statement->method('execute')->willReturn(false);
+
+            $details = $this->detailRepository->findAll();
+
+            $this->assertCount(0, $details);
+        }
     }
