@@ -12,6 +12,7 @@
     use Cafetaria\Service\DrinkServiceImpl;
     use Cafetaria\Service\OrderServiceImpl;
     use Cafetaria\Service\PaymentServiceImpl;
+    use Cafetaria\Service\DetailServiceImpl;
     use Cafetaria\View\FoodView;
     use Cafetaria\View\DrinkView;
     use Cafetaria\View\OrderView;
@@ -30,6 +31,7 @@
     $drinkService = new DrinkServiceImpl($drinkRepository);
     $orderService = new OrderServiceImpl($orderRepository);
     $paymentService = new PaymentServiceImpl($paymentRepository);
+    $detailService = new DetailServiceImpl($detailRepository);
 
     $foodView = new FoodView($foodService);
     $drinkView = new DrinkView($drinkService);
