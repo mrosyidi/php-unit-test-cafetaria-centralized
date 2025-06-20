@@ -5,7 +5,7 @@
     use Cafetaria\Service\FoodService;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\Validator\FoodValidator;
-    use Cafetaria\View\FoodListRenderer;
+    use Cafetaria\View\FoodRenderer;
 
     class FoodView 
     {

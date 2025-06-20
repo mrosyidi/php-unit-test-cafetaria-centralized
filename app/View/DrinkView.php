@@ -5,7 +5,7 @@
     use Cafetaria\Service\DrinkService;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\Validator\DrinkValidator;
-    use Cafetaria\View\DrinkListRenderer;
+    use Cafetaria\View\DrinkRenderer;
 
     class DrinkView 
     {
