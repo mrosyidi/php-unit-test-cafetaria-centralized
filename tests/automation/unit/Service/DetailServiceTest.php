@@ -49,4 +49,13 @@
             $this->assertEquals(1, $details[0]->getQty());
             $this->assertEquals(12000, $details[0]->getSubTotal());
         }
+
+        public function testGetAllDetailWhenNoDataExist()
+        {
+            $this->detailRepository->method('findAll')->willReturn([]);
+
+            $details = $this->detailService->getAllDetail();
+
+            $this->assertCount(0, $details);
+        }
     }
