@@ -60,4 +60,17 @@
 
             $this->assertCount(0, $details);
         }
+
+        public function testSaveSuccess()
+        {
+            $this->statement->expects($this->once())
+            ->method('execute')->with([1, "Soto Ayam", 10000, 2, 20000]);
+
+            $this->pdo->expects($this->once())
+            ->method('prepare')
+            ->with("INSERT INTO details(code,name,price,qty,sub_total) VALUES(?,?,?,?,?)")
+            ->willReturn($this->statement);
+
+            $this->detailRepository->save(new Detail(1, "Soto Ayam", 10000, 2, 20000));
+        }
     }
