@@ -8,4 +8,5 @@
     {
         public function findAll(): array;
         public function save(Detail $detail): void;
+        public function removeAll(): void;
     }
