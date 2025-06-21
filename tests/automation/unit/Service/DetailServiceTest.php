@@ -58,4 +58,23 @@
 
             $this->assertCount(0, $details);
         }
+
+        public function testAddDetailSuccess()
+        {
+            $item = $this->createMock(Detail::class);
+            $item->method('getCode')->willReturn(1);
+            $item->method('getName')->willReturn("Ayam Panggang");
+            $item->method('getPrice')->willReturn(12000);
+            $item->method('getQty')->willReturn(2);
+            $item->method('getSubTotal')->willReturn(24000);
+
+            $items = [$item];
+
+            $detail = new Detail(1, "Ayam Panggang", 12000, 2, 24000);
+
+            $this->detailRepository->expects($this->once())
+            ->method('save')->with($this->equalTo($detail));
+
+            $this->detailService->addDetail($items);
+        }
     }
