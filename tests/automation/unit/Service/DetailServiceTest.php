@@ -94,4 +94,21 @@
 
             $this->detailService->addDetail($items);
         }
+
+        public function testAddDetailWithZeroQtyThrowsException()
+        {
+            $item = $this->createMock(Detail::class);
+            $item->method('getCode')->willReturn(1);
+            $item->method('getName')->willReturn("Ayam Panggang");
+            $item->method('getPrice')->willReturn(12000);
+            $item->method('getQty')->willReturn(0);
+            $item->method('getSubTotal')->willReturn(24000);
+
+            $items = [$item];
+
+            $this->expectException(InvalidDetailException::class);
+            $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
+
+            $this->detailService->addDetail($items);
+        }
     }
