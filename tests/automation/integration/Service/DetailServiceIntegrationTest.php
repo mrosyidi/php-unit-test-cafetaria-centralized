@@ -61,4 +61,14 @@
             $this->assertEquals(1, $details[0]->getQty());
             $this->assertEquals(12000, $details[0]->getSubTotal());
         }
+
+        public function testAddDetailWithNegativePriceThrowsException()
+        {
+            $this->expectException(InvalidDetailException::class);
+            $this->expectExceptionMessage("Harga tidak boleh negatif.");
+
+            $detail = new Detail(1, "Gado-Gado", -12000, 2, 24000);
+
+            $this->detailService->addDetail([$detail]); 
+        }
     }
