@@ -33,4 +33,14 @@
 
             $this->assertFalse($result);
         }
+
+        public function testIsCodeInItemsThrowsExceptionEmptyItemsArray()
+        {
+            $items = [];
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Item tidak boleh kosong.');
+            
+            DetailValidator::isCodeInItems($items, 1);
+        }
     }
