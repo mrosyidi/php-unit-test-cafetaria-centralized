@@ -34,12 +34,14 @@
 
         $orderRepository = new OrderRepositoryImpl($connection);
         $paymentRepository = new PaymentRepositoryImpl($connection);
+        $detailRepository = new DetailRepositoryImpl($connection);
 
         $orderService = new OrderServiceImpl($orderRepository);
         $paymentService = new PaymentServiceImpl($paymentRepository);
+        $detailService = new DetailServiceImpl($detailRepository);
 
-        $paymentView = new PaymentView($orderService, $paymentService);
+        $paymentView = new PaymentView($orderService, $paymentService, $detailService);
         $paymentView->addPayment();
     }
 
-    testViewShowPayment();
+    testViewAddPayment();
