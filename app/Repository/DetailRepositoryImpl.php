@@ -44,6 +44,8 @@
 
         public function removeAll(): void 
         {
-            
+            $sql = "DELETE FROM details";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
         }
     }
