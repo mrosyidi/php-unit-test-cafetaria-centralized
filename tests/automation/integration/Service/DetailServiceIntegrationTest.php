@@ -72,12 +72,22 @@
             $this->detailService->addDetail([$detail]); 
         }
 
-        public function testAddOrderWithZeroQtyThrowsException()
+        public function testAddDetailWithZeroQtyThrowsException()
         {
             $this->expectException(InvalidDetailException::class);
             $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
 
             $detail = new Detail(2, "Rawon", 12000, 0, 12000);
+
+            $this->detailService->addDetail([$detail]); 
+        }
+
+        public function testAddDetailWithNegativeQtyThrowsException()
+        {
+            $this->expectException(InvalidDetailException::class);
+            $this->expectExceptionMessage("Kuantitas harus lebih dari nol.");
+
+            $detail = new Detail(2, "Ayam Goreng", 12000, -2, 24000);
 
             $this->detailService->addDetail([$detail]); 
         }
