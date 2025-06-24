@@ -6,6 +6,7 @@
     use Cafetaria\Service\DetailService;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\View\PaymentRenderer;
+    use Cafetaria\Validator\DetailValidator;
 
     class DetailView
     {
@@ -43,5 +44,31 @@
                     echo "Pilihan tidak dimengerti" . PHP_EOL;
                 }
             }
+        }
+
+        public function filterDetail(): void
+        {
+            $code = InputHelper::input("Kode Pesanan (x untuk batal)");
+            $payments = $this->paymentService->getAllPayment();
+
+            if($code == "x")
+            {
+                echo "Batal melihat detail pesanan" . PHP_EOL;
+                return;
+            }
+            
+            if(empty($payments))
+            {
+                echo "Tidak ada daftar pembayaran" . PHP_EOL;
+                return;
+            }
+            
+            if(!DetailValidator::isCodeInItems($payments, $code))
+            {
+                echo "Tidak ada kode pesanan yang sesuai dengan data pembayaran" . PHP_EOL;
+                return;
+            }
+            
+            $this->detailService->showDetail($code);
         }
     }
