@@ -24,4 +24,18 @@
         $detailView->showDetail();
     }
 
-    testViewShowDetail();
+    function testViewFilterDetail()
+    {
+        $connection = Database::getConnection();
+
+        $paymentRepository = new PaymentRepositoryImpl($connection);
+        $detailRepository = new DetailRepositoryimpl($connection);
+
+        $paymentService = new PaymentServiceImpl($paymentRepository);
+        $detailService = new DetailServiceImpl($detailRepository);
+
+        $detailView = new DetailView($detailService, $paymentService);
+        $detailView->filterDetail();
+    }
+
+    testViewFilterDetail();
