@@ -44,4 +44,21 @@
 
             $this->assertEmpty($details);
         }
+
+        public function testAddDetailSuccess()
+        {
+            $detail = new Detail(1, "Soto Daging", 12000, 1, 12000);
+            $details[] = $detail;
+
+            $this->detailService->addDetail($details);
+
+            $details = $this->detailService->getAllDetail();
+
+            $this->assertCount(1, $details);
+            $this->assertEquals(1, $details[0]->getCode());
+            $this->assertEquals("Soto Daging", $details[0]->getName());
+            $this->assertEquals(12000, $details[0]->getPrice());
+            $this->assertEquals(1, $details[0]->getQty());
+            $this->assertEquals(12000, $details[0]->getSubTotal());
+        }
     }
