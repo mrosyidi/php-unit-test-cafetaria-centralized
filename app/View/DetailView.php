@@ -7,6 +7,7 @@
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\View\PaymentRenderer;
     use Cafetaria\Validator\DetailValidator;
+    use Cafetaria\View\DetailRenderer;
 
     class DetailView
     {
@@ -69,6 +70,7 @@
                 return;
             }
             
-            $this->detailService->showDetail($code);
+            $details = $this->detailService->getAllDetail();
+            DetailRenderer::render($details, $code);
         }
     }
