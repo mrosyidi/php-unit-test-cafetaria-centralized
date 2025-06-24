@@ -53,4 +53,14 @@
 
             DetailValidator::isCodeInItems($items, 1);
         }
+
+        public function testIsCodeInItemsThrowsExceptionItemWithoutGetCodeMethod()
+        {
+            $items = [new \stdClass()];
+
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Item pada index 0 harus memiliki metode getCode().');
+
+            DetailValidator::isCodeInItems($items, 1);
+        }
     }
