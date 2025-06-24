@@ -4,6 +4,7 @@
 
     use Cafetaria\Service\OrderService;
     use Cafetaria\Service\PaymentService;
+    use Cafetaria\Service\DetailService;
     use Cafetaria\Helper\DuplicateHelper;
     use Cafetaria\Helper\InputHelper;
     use Cafetaria\Helper\PayHelper;
@@ -13,11 +14,13 @@
     {
         private OrderService $orderService;
         private PaymentService $paymentService;
+        private DetailService $detailService;
 
-        public function __construct(OrderService $orderService, PaymentService $paymentService)
+        public function __construct(OrderService $orderService, PaymentService $paymentService, DetailService $detailService)
         {
             $this->orderService = $orderService;
             $this->paymentService = $paymentService;
+            $this->detailService = $detailService;
         }
 
         public function showPayment(): void
@@ -108,6 +111,7 @@
 
             $this->paymentService->addPayment($code, $pay, $money);
             $this->orderService->removeOrder($code);
+            $this->detailService->addDetail($elements);
             
             echo "Kembalian : Rp." . $change . PHP_EOL;
             echo "Sukses memproses pesanan." . PHP_EOL;
