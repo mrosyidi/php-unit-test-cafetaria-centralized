@@ -37,4 +37,11 @@
             $this->assertEquals($detail->getQty(), $details[0]->getQty());
             $this->assertEquals(14000, $details[0]->getSubTotal());
         }
+
+        public function testGetAllDetailWithNoData()
+        {
+            $details = $this->detailService->getAllDetail();
+
+            $this->assertEmpty($details);
+        }
     }
