@@ -35,7 +35,7 @@
 
                 if($pilihan == "1")
                 {
-
+                    $this->filterDetail();
                 }else if($pilihan == "x")
                 {
                     break;
