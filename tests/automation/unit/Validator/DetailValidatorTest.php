@@ -20,4 +20,17 @@
 
             $this->assertTrue($result);
         }
+
+        public function testIsCodeInItemsReturnsFalseWhenItemNotFound()
+        {
+            $items = [
+                new Detail(1, 50000),
+                new Detail(2, 22000),
+                new Detail(3, 35000)
+            ];
+
+            $result = DetailValidator::isCodeInItems($items, 4);
+
+            $this->assertFalse($result);
+        }
     }
