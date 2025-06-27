@@ -148,4 +148,17 @@
 
             $this->assertStringContainsString("Kode pembayaran harus bilangan.", $output);
         }
+
+        public function testSelectDetailWhenNoPaymentExists()
+        {
+            $output = $this->runCliApp([
+                "5",
+                "1",
+                "2",
+                "x",
+                "x"
+            ]);
+
+            $this->assertStringContainsString("Tidak ada daftar pembayaran.", $output);
+        }
     }
