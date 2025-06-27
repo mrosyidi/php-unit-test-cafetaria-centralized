@@ -92,4 +92,32 @@
             $this->assertStringContainsString("Tidak ada daftar pembayaran", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
+
+        public function testShowDetailWhenPaymentExists()
+        {
+            $this->foodService->addFood("Rawon", 12000);
+            $this->foodService->addFood("Soto Ayam", 10000);
+            $this->drinkService->addDrink("Es Oyen", 12000);
+            $this->drinkService->addDrink("Es Campur", 12000);
+            
+            $foods = $this->foodService->getAllFood();
+            $drinks = $this->drinkService->getAllDrink();
+            
+            $this->orderService->addOrder(1, $foods[0]->getName(), $foods[0]->getPrice(), 1);
+            $this->orderService->addOrder(1, $foods[1]->getName(), $foods[1]->getPrice(), 1);
+            $this->orderService->addOrder(1, $drinks[0]->getName(), $drinks[0]->getPrice(), 2);
+            $this->orderService->addOrder(2, $drinks[1]->getName(), $drinks[1]->getPrice(), 1);
+
+            $this->paymentService->addPayment(1, 44000, 100000, 56000);
+
+            $output = $this->runCliApp([
+                "5",      
+                "x",           
+                "x"
+            ]);
+
+            $this->assertStringContainsString("DAFTAR PEMBAYARAN", $output);
+            $this->assertStringContainsString("1. Kode: 1  Total: 44000  Jumlah Bayar: 100000  Kembalian: 56000", $output);
+            $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
+        }
     }
