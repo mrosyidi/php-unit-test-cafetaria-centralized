@@ -54,19 +54,25 @@
 
             if($code == "x")
             {
-                echo "Batal melihat detail pesanan" . PHP_EOL;
+                echo "Batal melihat detail pesanan." . PHP_EOL;
+                return;
+            }
+
+            if(!is_numeric($code))
+            {
+                echo "Kode pembayaran harus bilangan." . PHP_EOL;
                 return;
             }
             
             if(empty($payments))
             {
-                echo "Tidak ada daftar pembayaran" . PHP_EOL;
+                echo "Tidak ada daftar pembayaran." . PHP_EOL;
                 return;
             }
             
             if(!DetailValidator::isCodeInItems($payments, $code))
             {
-                echo "Tidak ada kode pesanan yang sesuai dengan data pembayaran" . PHP_EOL;
+                echo "Tidak ada kode pesanan yang sesuai dengan data pembayaran." . PHP_EOL;
                 return;
             }
             
