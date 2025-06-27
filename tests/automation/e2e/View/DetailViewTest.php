@@ -120,4 +120,19 @@
             $this->assertStringContainsString("1. Kode: 1  Total: 44000  Jumlah Bayar: 100000  Kembalian: 56000", $output);
             $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
         }
+
+        public function testShowDetailWithInvalidMenuSelection()
+        {
+            $output = $this->runCliApp([
+                "5",      
+                "6",
+                "x",           
+                "x"
+            ]);
+
+            $this->assertStringContainsString("DAFTAR PEMBAYARAN", $output);
+            $this->assertStringContainsString("Tidak ada daftar pembayaran", $output);
+            $this->assertStringContainsString("Pilihan tidak dimengerti", $output);
+            $this->assertStringContainsString("Sampai Jumpa Lagi", $output);
+        }
     }
